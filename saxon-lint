@@ -1,13 +1,13 @@
 #!/bin/bash
 
-# 2014-12-15 12:24:21.0 +0100 / Gilles Quenot <gilles.quenot@sputnick.fr>
+# 2014-12-15 13:40:24.0 +0100 / Gilles Quenot <gilles.quenot@sputnick.fr>
 
 # This wrapper script is aimed to query XML files
 # like XMLStarlet or xmllint, but with the ability to use XPath 3.
 
 # Need to be edited, the PATH to saxon9he.jar
-# from http://sourceforge.net/projects/saxon/files/Saxon-HE/
 saxon9hePATH=/usr/share/java/saxon
+
 # -----8<--------------- code now:
 if [[ ! -s $saxon9hePATH/saxon9he.jar ]]; then
     echo >&2 "ERROR:The variable saxon9hePATH in $0 should be edited with the PATH to saxon9he.jar"
@@ -34,5 +34,3 @@ fi
 for file in "${files[@]}"; do
     java -cp "$saxon9hePATH/saxon9he.jar" net.sf.saxon.Query -s:"$file" -qs:"$xpath" !method=text !item-separator=$'\n'
 done
-
-echo
