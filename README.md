@@ -9,7 +9,7 @@ The default output display each result nodes on a separate newline, this is suit
     $ wget http://sourceforge.net/projects/saxon/files/Saxon-HE/9.6/SaxonHE9-6-0-1J.zip
 
  - unzip `SaxonHE9-6-0-1J.zip` to `C:\`
- - edit the file saxon-lint, you have to replace `saxon9hePATH=XXX by saxon9hePATH=/PATH/WHERE/YOU/WANT/THE/Saxon/LIBS`
+ - edit the file `saxon-lint`, you have to replace `saxon9hePATH=XXX by saxon9hePATH=/PATH/WHERE/YOU/WANT/THE/Saxon/LIBS`
 
 ### Install for Linux/Unix*likes/Mac Os X:
 
@@ -17,7 +17,8 @@ The default output display each result nodes on a separate newline, this is suit
     $ chmod +x saxon-lint
     $ wget http://sourceforge.net/projects/saxon/files/Saxon-HE/9.6/SaxonHE9-6-0-1J.zip
     $ unzip SaxonHE9-6-0-1J.zip -d /PATH/WHERE/YOU/WANT/THE/Saxon/LIBS
-    $ $EDITOR saxon-lint # you have to replace saxon9hePATH=XXX by saxon9hePATH=/PATH/WHERE/YOU/WANT/THE/Saxon/LIBS
+    $ $EDITOR saxon-lint # you have to replace saxon9hePATH=XXX by 
+        saxon9hePATH=/PATH/WHERE/YOU/WANT/THE/Saxon/LIBS
 
 ### Note:
 To be able to run the command without dot-slash `./saxon-lint`, you need to modify the PATH variable. For windows, check http://www.computerhope.com/issues/ch000549.htm    
@@ -30,5 +31,5 @@ For Unix Likes, modify `~/.bashrc` by searching `PATH=XXX` and put `PATH=$PATH:/
 
     Examples:
         saxon-lint '//key[text()="VersionString"]/following-sibling::string[1]' file.xml
-        saxon-lint 'for $r in 1 to count(/table/tr[2]/td/table/tr/td) return /table/tr[1]/th/string()' file2.xml
-        curl -s 'http://domain.tld/file.xml' | saxon-lint '//key[text()="VersionString"]/following-sibling::string[1]'
+        saxon-lint 'for $r in 1 to count(/table/tr) return /title' file2.xml
+        curl -s 'http://domain.tld/file.xml' | saxon-lint '//key[1]'
