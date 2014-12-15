@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# 2014-12-15 06:22:41.0 +0100 / Gilles Quenot <gilles.quenot@sputnick.fr>
+# 2014-12-15 12:24:21.0 +0100 / Gilles Quenot <gilles.quenot@sputnick.fr>
 
 # This wrapper script is aimed to query XML files
 # like XMLStarlet or xmllint, but with the ability to use XPath 3.
@@ -32,5 +32,7 @@ else
 fi
 
 for file in "${files[@]}"; do
-    java -cp "$saxon9hePATH/saxon9he.jar" net.sf.saxon.Query -s:"$file" -qs:"string-join($xpath,'&#xA;')" !method=text
+    java -cp "$saxon9hePATH/saxon9he.jar" net.sf.saxon.Query -s:"$file" -qs:"$xpath" !method=text !item-separator=$'\n'
 done
+
+echo
