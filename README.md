@@ -11,7 +11,7 @@ The default output display each result nodes on a separate newline, this is suit
  - unzip `SaxonHE9-6-0-1J.zip` to `C:\`
  - edit the file `saxon-lint`, you have to replace `saxon9hePATH=XXX by saxon9hePATH=/PATH/WHERE/YOU/WANT/THE/Saxon/LIBS`
 
-### Install for Linux/Unix*likes/Mac Os X:
+### Install for Linux/Unix*likes:
 
     $ wget 'https://raw.githubusercontent.com/sputnick-dev/saxon-lint/master/saxon-lint'
     $ chmod +x saxon-lint
@@ -22,7 +22,11 @@ The default output display each result nodes on a separate newline, this is suit
 
 ### Note:
 To be able to run the command without dot-slash `./saxon-lint`, you need to modify the PATH variable. For windows, check http://www.computerhope.com/issues/ch000549.htm    
-For Unix Likes, modify `~/.bashrc` by searching `PATH=XXX` and put `PATH=$PATH:/PATH/TO/saxon-lint_DIRECTORY`
+For Unix Likes, modify `~/.bashrc` by searching `PATH=XXX` and put `PATH=$PATH:/PATH/TO/saxon-lint_DIRECTORY`    
+
+
+Mac Os X is not already tested. With this OS, you have to install `java` too, it's not installed by default.    
+Thanks to report any successfull install to gilles `<DOT> quenot <AT> sputnick <DOT> fr`, and any issue [here](https://github.com/sputnick-dev/saxon-lint/issues/new)
 
 ### Usage:
 
