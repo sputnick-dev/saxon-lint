@@ -1,4 +1,4 @@
-This [Saxon-HE](http://sourceforge.net/projects/saxon) wrapper script is aimed to query XML files like [XMLStarlet](http://xmlstar.sourceforge.net/) or [xmllint](http://xmlsoft.org/xmllint.html), but with the ability to use **XPath 3.0** and others fresh rich features.
+This [Saxon-HE](http://sourceforge.net/projects/saxon) wrapper script is aimed to query XML files with command line in a shell like [XMLStarlet](http://xmlstar.sourceforge.net/) or [xmllint](http://xmlsoft.org/xmllint.html), but with the ability to use **XPath 3.0** and others fresh rich features.
 
 The default output display each result nodes on a separate newline, this is suitable for shell scripting to split results in an array (by example). This feature is a lack for `xmllint`
 
@@ -8,8 +8,8 @@ The default output display each result nodes on a separate newline, this is suit
     $ chmod +x saxon-lint
     $ wget http://sourceforge.net/projects/saxon/files/Saxon-HE/9.6/SaxonHE9-6-0-1J.zip
 
-     - unzip `SaxonHE9-6-0-1J.zip` to `C:\`
-     - edit the file saxon-lint, you have to replace saxon9hePATH=XXX by saxon9hePATH=/PATH/WHERE/YOU/WANT/THE/Saxon/LIBS
+ - unzip `SaxonHE9-6-0-1J.zip` to `C:\`
+ - edit the file saxon-lint, you have to replace `saxon9hePATH=XXX by saxon9hePATH=/PATH/WHERE/YOU/WANT/THE/Saxon/LIBS`
 
 ### Install for Linux/Unix*likes/Mac Os X:
 
@@ -19,7 +19,7 @@ The default output display each result nodes on a separate newline, this is suit
     $ unzip SaxonHE9-6-0-1J.zip -d /PATH/WHERE/YOU/WANT/THE/Saxon/LIBS
     $ $EDITOR saxon-lint # you have to replace saxon9hePATH=XXX by saxon9hePATH=/PATH/WHERE/YOU/WANT/THE/Saxon/LIBS
 
-### Note
+### Note:
 To be able to run the command without dot-slash `./saxon-lint`, you need to modify the PATH variable. For windows, check http://www.computerhope.com/issues/ch000549.htm    
 For Unix Likes, modify `~/.bashrc` by searching `PATH=XXX` and put `PATH=$PATH:/PATH/TO/saxon-lint_DIRECTORY`
 
