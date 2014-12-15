@@ -1,0 +1,36 @@
+#!/bin/bash
+
+# 2014-12-15 06:22:41.0 +0100 / Gilles Quenot <gilles.quenot@sputnick.fr>
+
+# This wrapper script is aimed to query XML files
+# like XMLStarlet or xmllint, but with the ability to use XPath 3.
+
+# Need to be edited, the PATH to saxon9he.jar
+# from http://sourceforge.net/projects/saxon/files/Saxon-HE/
+saxon9hePATH=/usr/share/java/saxon
+# -----8<--------------- code now:
+if [[ ! -s $saxon9hePATH/saxon9he.jar ]]; then
+    echo >&2 "ERROR:The variable saxon9hePATH in $0 should be edited with the PATH to saxon9he.jar"
+    exit 1
+fi
+
+if [[ ! $@ || $1 == -h || $1 == --help ]]; then
+    cat<<EOF >&2
+Usage:
+    ${0##*/} <XPath expression> [<file> | <files*>]
+EOF
+    exit 1
+fi
+
+xpath="$1"
+shift
+
+if [[ -s $1 ]]; then
+    files=( "$@" )
+else
+    files=( '/dev/stdin' )
+fi
+
+for file in "${files[@]}"; do
+    java -cp "$saxon9hePATH/saxon9he.jar" net.sf.saxon.Query -s:"$file" -qs:"string-join($xpath,'&#xA;')" !method=text
+done
