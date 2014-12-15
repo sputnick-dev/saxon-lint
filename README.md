@@ -4,7 +4,7 @@ The default output display each result nodes on a separate newline, this is suit
 
 ### Install for Windows + Cygwin:
 
-    $ wget 'https://raw.githubusercontent.com/sputnick-dev/saxon-lint/master/saxon-lint'
+    $ curl -k 'https://raw.githubusercontent.com/sputnick-dev/saxon-lint/master/saxon-lint' > saxon-lint
     $ chmod +x saxon-lint
     $ wget http://sourceforge.net/projects/saxon/files/Saxon-HE/9.6/SaxonHE9-6-0-1J.zip
 
@@ -13,7 +13,7 @@ The default output display each result nodes on a separate newline, this is suit
 
 ### Install for Linux/Unix*likes:
 
-    $ wget 'https://raw.githubusercontent.com/sputnick-dev/saxon-lint/master/saxon-lint'
+    $ curl -k 'https://raw.githubusercontent.com/sputnick-dev/saxon-lint/master/saxon-lint' > saxon-lint
     $ chmod +x saxon-lint
     $ wget http://sourceforge.net/projects/saxon/files/Saxon-HE/9.6/SaxonHE9-6-0-1J.zip
     $ unzip SaxonHE9-6-0-1J.zip -d /PATH/WHERE/YOU/WANT/THE/Saxon/LIBS
@@ -22,7 +22,7 @@ The default output display each result nodes on a separate newline, this is suit
 
 ### Note:
 To be able to run the command without dot-slash `./saxon-lint`, you need to modify the PATH variable. For windows, check http://www.computerhope.com/issues/ch000549.htm    
-For Unix Likes, modify `~/.bashrc` by searching `PATH=XXX` and put `PATH=$PATH:/PATH/TO/saxon-lint_DIRECTORY`    
+For Unix Likes, modify `~/.bashrc` by searching `PATH=` and put `PATH=$PATH:/PATH/TO/saxon-lint_DIRECTORY`    
 
 
 Mac Os X is not already tested. With this OS, you have to install `java` too, it's not installed by default.    
