@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# 2014-12-15 13:40:24.0 +0100 / Gilles Quenot <gilles.quenot@sputnick.fr>
+# 2014-12-15 13:55:30.0 +0100 / Gilles Quenot <gilles.quenot@sputnick.fr>
 
 # This wrapper script is aimed to query XML files
 # like XMLStarlet or xmllint, but with the ability to use XPath 3.
@@ -28,7 +28,7 @@ shift
 if [[ -s $1 ]]; then
     files=( "$@" )
 else
-    files=( '/dev/stdin' )
+    files=( - ) # STDIN
 fi
 
 for file in "${files[@]}"; do
