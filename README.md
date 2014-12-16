@@ -9,7 +9,7 @@ The default output display each result nodes on a separate newline, this is suit
     $ wget http://sourceforge.net/projects/saxon/files/Saxon-HE/9.6/SaxonHE9-6-0-1J.zip
 
  - unzip `SaxonHE9-6-0-1J.zip` to `C:\`
- - edit the file `saxon-lint`, you have to replace `saxon9hePATH=XXX by saxon9hePATH=/PATH/WHERE/YOU/WANT/THE/Saxon/LIBS`
+ - edit the file `saxon-lint`, you have to replace `saxon9hePATH=XXX by saxon9hePATH=C:/SaxonHE9-6-0-1J`
 
 ### Install for Linux/Unix*likes:
 
