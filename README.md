@@ -2,6 +2,11 @@ This [Saxon-HE](http://sourceforge.net/projects/saxon) wrapper script is aimed t
 
 The default output display each result nodes on a separate newline, this is suitable for shell scripting to split results in an array (by example). This feature is a lack for `xmllint`
 
+### Install prerequisites
+ - java (openjdk...)
+ - bash
+ - curl
+
 ### Install for Windows + Cygwin:
 
     $ curl -k 'https://raw.githubusercontent.com/sputnick-dev/saxon-lint/master/saxon-lint' > saxon-lint
