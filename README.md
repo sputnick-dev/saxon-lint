@@ -11,7 +11,7 @@ The default output display each result nodes on a separate newline, this is suit
 
     $ curl -k 'https://raw.githubusercontent.com/sputnick-dev/saxon-lint/master/saxon-lint' > saxon-lint
     $ chmod +x saxon-lint
-    $ wget http://sourceforge.net/projects/saxon/files/Saxon-HE/9.6/SaxonHE9-6-0-1J.zip
+    $ curl -L http://sourceforge.net/projects/saxon/files/Saxon-HE/9.6/SaxonHE9-6-0-1J.zip > SaxonHE9-6-0-1J.zip
 
  - unzip `SaxonHE9-6-0-1J.zip` to `C:\`
  - edit the file `saxon-lint`, you have to replace `saxon9hePATH=XXX by saxon9hePATH='C:/SaxonHE9-6-0-1J'`
@@ -20,7 +20,7 @@ The default output display each result nodes on a separate newline, this is suit
 
     $ curl -k 'https://raw.githubusercontent.com/sputnick-dev/saxon-lint/master/saxon-lint' > saxon-lint
     $ chmod +x saxon-lint
-    $ wget http://sourceforge.net/projects/saxon/files/Saxon-HE/9.6/SaxonHE9-6-0-1J.zip
+    $ curl -L http://sourceforge.net/projects/saxon/files/Saxon-HE/9.6/SaxonHE9-6-0-1J.zip > SaxonHE9-6-0-1J.zip
     $ unzip SaxonHE9-6-0-1J.zip -d /PATH/WHERE/YOU/WANT/THE/Saxon/LIBS
     $ $EDITOR saxon-lint # you have to replace saxon9hePATH=XXX by 
         saxon9hePATH=/PATH/WHERE/YOU/WANT/THE/Saxon/LIBS
