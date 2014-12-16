@@ -7,27 +7,27 @@ The default output display each result nodes on a separate newline, this is suit
  - bash
  - curl
 
+### Install for Linux/Unix*likes:
+
+    $ curl -k 'https://raw.githubusercontent.com/sputnick-dev/saxon-lint/master/saxon-lint' > saxon-lint
+    $ chmod +x saxon-lint
+    $ curl -L http://sourceforge.net/projects/saxon/files/Saxon-HE/9.6/SaxonHE9-6-0-1J.zip > SaxonHE9-6-0-1J.zip
+    $ unzip SaxonHE9-6-0-1J.zip -d /PATH/WHERE/YOU/WANT/THE/DIR/Saxon/LIBS
+    $ $EDITOR saxon-lint # you have to replace saxon9hePATH=XXX by 
+        saxon9hePATH=/PATH/WHERE/YOU/WANT/THE/Saxon/DIR/LIBS
+
 ### Install for Windows + Cygwin:
 
     $ curl -k 'https://raw.githubusercontent.com/sputnick-dev/saxon-lint/master/saxon-lint' > saxon-lint
     $ chmod +x saxon-lint
     $ curl -L http://sourceforge.net/projects/saxon/files/Saxon-HE/9.6/SaxonHE9-6-0-1J.zip > SaxonHE9-6-0-1J.zip
 
- - unzip `SaxonHE9-6-0-1J.zip` to `C:\`
+ - unzip `SaxonHE9-6-0-1J.zip` to `C:\SaxonHE9-6-0-1J` directory
  - edit the file `saxon-lint`, you have to replace `saxon9hePATH=XXX by saxon9hePATH='C:/SaxonHE9-6-0-1J'`
 
-### Install for Linux/Unix*likes:
-
-    $ curl -k 'https://raw.githubusercontent.com/sputnick-dev/saxon-lint/master/saxon-lint' > saxon-lint
-    $ chmod +x saxon-lint
-    $ curl -L http://sourceforge.net/projects/saxon/files/Saxon-HE/9.6/SaxonHE9-6-0-1J.zip > SaxonHE9-6-0-1J.zip
-    $ unzip SaxonHE9-6-0-1J.zip -d /PATH/WHERE/YOU/WANT/THE/Saxon/LIBS
-    $ $EDITOR saxon-lint # you have to replace saxon9hePATH=XXX by 
-        saxon9hePATH=/PATH/WHERE/YOU/WANT/THE/Saxon/LIBS
-
 ### Note:
-To be able to run the command without dot-slash `./saxon-lint`, you need to modify the PATH variable. For windows, check http://www.computerhope.com/issues/ch000549.htm    
-For Unix Likes, modify `~/.bashrc` by searching `PATH=` and put `PATH=$PATH:/PATH/TO/saxon-lint_DIRECTORY`    
+To be able to run the command without dot-slash : `./saxon-lint`, you need to modify the PATH variable. For windows, check http://www.computerhope.com/issues/ch000549.htm    
+For Unix Likes, modify `~/.bashrc` by searching `PATH=` and put `PATH=$PATH:/PATH/TO/saxon-lint_DIRECTORY`, then `source ~/.bashrc`
 
 ### Usage:
 
