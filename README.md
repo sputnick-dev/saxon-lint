@@ -29,10 +29,6 @@ The default output display each result nodes on a separate newline, this is suit
 To be able to run the command without dot-slash `./saxon-lint`, you need to modify the PATH variable. For windows, check http://www.computerhope.com/issues/ch000549.htm    
 For Unix Likes, modify `~/.bashrc` by searching `PATH=` and put `PATH=$PATH:/PATH/TO/saxon-lint_DIRECTORY`    
 
-
-Mac Os X is not already tested. With this OS, you have to install `java` too, it's not installed by default.    
-Thanks to report any successfull install to gilles `<DOT> quenot <AT> sputnick <DOT> fr`, and any issue [here](https://github.com/sputnick-dev/saxon-lint/issues/new)
-
 ### Usage:
 
     Usage:
