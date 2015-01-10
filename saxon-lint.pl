@@ -25,7 +25,7 @@ GetOptions (
     "output-separator=s"    => \$oDel,     # string
     "xpath=s"               => \$xpath,    # string
     "query=s"               => \$xpath,    # string
-    "indent=s"              => \$indent,   # string
+    "indent"                => \$indent,   # string
 ) or die("Error in command line arguments\n");
 
 $indent = $indent ? 'yes' : 'no';
@@ -87,10 +87,11 @@ Usage:
     $0 <opts> <file(s)>
     Parse the XML files and output the result of the parsing
     --help,                     this help
-    --html,                     use the HTML parser
-    --output-separator,         set default separator to character ("\\n", ","...)
     --xpath,                    XPath expression
     --query,                    XQuery expression
+    --html,                     use the HTML parser
+    --output-separator,         set default separator to character ("\\n", ","...)
+    --indent,                   indent the output
 EOF
    exit $error if $error; 
 }
