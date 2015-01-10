@@ -25,7 +25,7 @@ GetOptions (
     "output-separator=s"    => \$oDel,     # string
     "xpath=s"               => \$xpath,    # string
     "query=s"               => \$xpath,    # string
-    "indent"                => \$indent,   # string
+    "indent"                => \$indent,   # flag
 ) or die("Error in command line arguments\n");
 
 $indent = $indent ? 'yes' : 'no';
