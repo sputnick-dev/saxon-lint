@@ -37,7 +37,7 @@ unless (length $xpath) {
 help($help) if $help == 1;
 help(0) unless @ARGV;
 
-foreach my $input (<@ARGV>) {
+foreach my $input (@ARGV) {
     $html = 1 if $input =~ m!^https?://!;
     my $https = 0;
     if ($input =~ m!^https://!) {
