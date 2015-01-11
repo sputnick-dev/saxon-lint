@@ -26,8 +26,8 @@ And Perl modules :
 ```sh
 $ git clone https://github.com/sputnick-dev/saxon-lint.git
 $ cd saxon-lint
-$ chmod +x saxon-lint
-$ ./saxon-lint --help
+$ chmod +x saxon-lint.pl
+$ ./saxon-lint.pl --help
 ```
 
 ### Usage:
