@@ -51,7 +51,7 @@ foreach my $input (@ARGV) {
 EOF
 );
         # can't find a better way to do this with XML::LibXML
-        $xml =~ s/^\<\?xml\s*version=.\d+\.\d+.\s*encoding=.[^"]+.\?\>//;
+        $xml =~ s/^\<\?xml\s*version=.\d+\.\d+.\s*encoding=.[^"]+.\?\>//i;
         $xml =~ s/(^|\n)[\n\s]*/$1/g;
         my $parser = XML::LibXML->new();
         my $doc = $parser->parse_balanced_chunk($xml);
@@ -73,7 +73,7 @@ EOF
 EOF
         );
         # can't find a better way to do this with XML::LibXML
-        $xml =~ s/^\<\?xml\s*version=.\d+\.\d+.\s*encoding=.[^"]+.\?\>//;
+        $xml =~ s/^\<\?xml\s*version=.\d+\.\d+.\s*encoding=.[^"]+.\?\>//i;
         $xml =~ s/(^|\n)[\n\s]*/$1/g;
         print $xml;
     }
