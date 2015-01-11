@@ -34,7 +34,7 @@ $ ./saxon-lint --help
 
 ```
 Usage:
-    test.pl <opts> <file(s)>
+    saxon-lint.pl <opts> <file(s)>
     Parse the XML files and output the result of the parsing
     --help,                     this help
     --html,                     use the HTML parser
