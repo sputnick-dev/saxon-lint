@@ -5,12 +5,15 @@
 use strict; use warnings;
 use XML::LibXML;
 use Getopt::Long;
+use File::Basename;
 
 use utf8;
 binmode $_, ":utf8" for qw/STDOUT STDIN STDERR/;
 
-my $sep = $^O =~ /MSWin/i ? ";" : ":";
-my $classpath = "$0/../lib/tagsoup-1.2.jar${sep}$0/../lib/saxon9he.jar";
+chdir dirname($0);
+my $sep = $^O =~ /(?:MSWin|cygwin)/i ? ";" : ":";
+my $classpath = "lib/tagsoup-1.2.jar${sep}lib/saxon9he.jar";
+
 my $queryclass = 'net.sf.saxon.Query';
 my $htmlclass = 'org.ccil.cowan.tagsoup.Parser';
 
@@ -42,16 +45,16 @@ $xpath =~ s/\$/\\\$/g;
 foreach my $input (@ARGV) {
     $html = 1 if $input =~ m!^https?://!;
     my $https = 0;
+
     if ($input =~ m!^https://!) {
         $input = GET_https($input) if $input =~ m!^https://!;
         $https = 1;
     }
+
     if ($html) {
         my $xml = qx(
-        bash <<EOF
-        java -cp '$classpath' $queryclass -x:$htmlclass -s:'$input' \Q-qs:declare default element namespace "http://www.w3.org/1999/xhtml";$xpath\E -quit:on !item-separator=\$'$oDel' !indent=$indent
-EOF
-);
+            java -cp '$classpath' $queryclass -x:$htmlclass \Q-s:$input\E '-qs:declare default element namespace "http://www.w3.org/1999/xhtml";$xpath' -quit:on !item-separator=\$'$oDel' !indent=$indent
+		);
         if ($pi) {
             $xml =~ s/^\<\?xml\s*version=.\d+\.\d+.\s*encoding=.[^"]+.\?\>/$&\n/i;
         }
@@ -75,9 +78,7 @@ EOF
     # XML
     else {
         my $xml = qx(
-        bash<<EOF
-            java -cp "$classpath" "$queryclass" -s:"$input" \Q-qs:$xpath\E -quit:on !item-separator=\$'$oDel' !encoding=utf-8 !indent=$indent
-EOF
+            java -cp "$classpath" "$queryclass" \Q-s:$input\E \Q-qs:$xpath\E -quit:on !item-separator=\$'$oDel' !encoding=utf-8 !indent=$indent
         );
         if ($pi) {
             $xml =~ s/^\<\?xml\s*version=.\d+\.\d+.\s*encoding=.[^"]+.\?\>/$&\n/i;
@@ -147,6 +148,16 @@ sub GET_https {
     my $fh = File::Temp->new();
     $fh->unlink_on_destroy(0);
     print $fh $res->content;
+	
+    my $filename = $fh->filename;
+    my $path;
 
-    return $fh->filename;
+    if ($^O =~/cygwin/i) {
+        $path = qx(cygpath -m "/cygdrive/c/cygwin$filename");
+    }
+    else {
+        $path = $filename;
+    }
+
+    return $path;
 }
