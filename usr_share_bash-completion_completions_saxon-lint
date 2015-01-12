@@ -1,0 +1,18 @@
+# bash completion for saxon-lint(1)                           -*- shell-script -*-
+
+_saxon-lint()
+{
+    local cur prev words cword
+    _init_completion || return
+
+    if [[ "$cur" == -* ]]; then
+        COMPREPLY=( $( compgen -W '$( _parse_help "$1" )' -- "$cur" ) )
+        COMPREPLY=( "${COMPREPLY[@]%:}" )
+        return 0
+    fi
+
+    _filedir '@(*ml|htm|svg?(z)|xs[dl]|rng|wsdl|jnlp|tld)?(.gz)'
+} &&
+complete -F _saxon-lint saxon-lint.pl saxon-lint
+
+# ex: ts=4 sw=4 et filetype=sh
