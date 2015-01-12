@@ -1,7 +1,7 @@
 # saxon-lint
 This [Saxon-HE](http://sourceforge.net/projects/saxon) wrapper script is aimed to query XML with command line in a shell like [XMLStarlet](http://xmlstar.sourceforge.net/) or [xmllint](http://xmlsoft.org/xmllint.html), but with the ability to use **XPath 3.0**/**XQuery 3.0** using Michael Kay's Saxon Java library. (Other command-line tools use XPath 1.0).
 
-As far as you have the prerequisites, this project is **cross-platform** (Linux, MacOsX & *BSD, Windows... ).
+As far as you have the prerequisites, this project is **cross-platform** (Linux, MacOsX & *BSD, Windows (Cygwin)... ).
 
 The default output display each result nodes on a separate newline, this is suitable for shell scripting to split results in an array (by example). This feature is missing with `xmllint`.
 
@@ -19,13 +19,14 @@ The default output display each result nodes on a separate newline, this is suit
 And Perl modules :
 
   - `XML::LibXML` :`libxml-libxml-perl` debian package
-  - `LWP::UserAgent` & `Net::SSLeay` (if HTTPS is needed) : `libwww-perl libnet-ssleay-perl` debian packages
+  - `LWP::UserAgent`, `LWP::protocol::https` & `Net::SSLeay` (if HTTPS is needed) : `libwww-perl libnet-ssleay-perl liblwp-protocol-https-perl` debian packages
+  - 
 
 ### Install:
 
 ```sh
 $ git clone https://github.com/sputnick-dev/saxon-lint.git
-$ cd saxon-lint
+$ cd saxon-lint*
 $ chmod +x saxon-lint.pl
 $ ./saxon-lint.pl --help
 ```
@@ -44,9 +45,21 @@ Usage:
 
 ```
 
-### Trick:
+### Examples:
+
+```sh
+saxon-lint.pl --xpath '//key[text()="String"]/following-sibling::string[1]' file.xml
+saxon-lint.pl --xpath 'for $r in 1 to count(/table/tr) return /title' file.xml
+curl -Ls 'http://domain.tld/file.xml' | saxon-lint.pl  --xpath '//key[1]' -
+```
+
+### Tricks:
 To be able to run the command without dot-slash : `./saxon-lint`, you need to modify the PATH variable. For windows, check http://www.computerhope.com/issues/ch000549.htm    
 For Unix Likes, modify `~/.bashrc` by searching `PATH=` and put `PATH=$PATH:/PATH/TO/saxon-lint_DIRECTORY`, then `source ~/.bashrc`
+
+If you want to enable `bash-completion`, you have to install this program and move    
+`usr_share_bash-completion_completions_saxon-lint`    
+to `/usr/share/bash-completion/completions/saxon-lint` (or similar).
 
 ### Licensing:
 
