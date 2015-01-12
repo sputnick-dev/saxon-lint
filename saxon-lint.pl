@@ -30,6 +30,7 @@ GetOptions (
 
 $indent = $indent ? 'yes' : 'no';
 
+$xpath =~ s/\$/\\\$/g;
 unless (length $xpath) {
     warn "Missing mandatory --xpath or --query argument\n\n";
     help(1);
