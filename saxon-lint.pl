@@ -30,13 +30,14 @@ GetOptions (
 
 $indent = $indent ? 'yes' : 'no';
 
-$xpath =~ s/\$/\\\$/g;
 unless (length $xpath) {
     warn "Missing mandatory --xpath or --query argument\n\n";
     help(1);
 }
 help($help) if $help == 1;
 help(0) unless @ARGV;
+
+$xpath =~ s/\$/\\\$/g;
 
 foreach my $input (@ARGV) {
     $html = 1 if $input =~ m!^https?://!;
