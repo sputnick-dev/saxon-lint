@@ -14,10 +14,9 @@ my $classpath = "$0/../lib/tagsoup-1.2.jar${sep}$0/../lib/saxon9he.jar";
 my $queryclass = 'net.sf.saxon.Query';
 my $htmlclass = 'org.ccil.cowan.tagsoup.Parser';
 
-my $help = my $html = 0;
+my $help = my $html = my $indent = my $pi = 0;
 my $oDel = "\n";
 my $xpath = '';
-my $indent = 0;
 
 GetOptions (
     "html"                  => \$html,     # flag
@@ -26,6 +25,7 @@ GetOptions (
     "xpath=s"               => \$xpath,    # string
     "query=s"               => \$xpath,    # string
     "indent"                => \$indent,   # flag
+    "pi"                    => \$pi,       # flag
 ) or die("Error in command line arguments\n");
 
 $indent = $indent ? 'yes' : 'no';
@@ -52,9 +52,14 @@ foreach my $input (@ARGV) {
         java -cp '$classpath' $queryclass -x:$htmlclass -s:'$input' \Q-qs:declare default element namespace "http://www.w3.org/1999/xhtml";$xpath\E -quit:on !item-separator=\$'$oDel' !indent=$indent
 EOF
 );
-        # can't find a better way to do this with XML::LibXML
-        $xml =~ s/^\<\?xml\s*version=.\d+\.\d+.\s*encoding=.[^"]+.\?\>//i;
-        $xml =~ s/(^|\n)[\n\s]*/$1/g;
+        if ($pi) {
+            $xml =~ s/^\<\?xml\s*version=.\d+\.\d+.\s*encoding=.[^"]+.\?\>/$&\n/i;
+        }
+        else {
+            # can't find a better way to do this with XML::LibXML
+            $xml =~ s/^\<\?xml\s*version=.\d+\.\d+.\s*encoding=.[^"]+.\?\>//i;
+            $xml =~ s/(^|\n)[\n\s]*/$1/g;
+        }
         my $parser = XML::LibXML->new();
         my $doc = $parser->parse_balanced_chunk($xml);
 
@@ -74,9 +79,14 @@ EOF
             java -cp "$classpath" "$queryclass" -s:"$input" \Q-qs:$xpath\E -quit:on !item-separator=\$'$oDel' !encoding=utf-8 !indent=$indent
 EOF
         );
-        # can't find a better way to do this with XML::LibXML
-        $xml =~ s/^\<\?xml\s*version=.\d+\.\d+.\s*encoding=.[^"]+.\?\>//i;
-        $xml =~ s/(^|\n)[\n\s]*/$1/g;
+        if ($pi) {
+            $xml =~ s/^\<\?xml\s*version=.\d+\.\d+.\s*encoding=.[^"]+.\?\>/$&\n/i;
+        }
+        else {
+            # can't find a better way to do this with XML::LibXML
+            $xml =~ s/^\<\?xml\s*version=.\d+\.\d+.\s*encoding=.[^"]+.\?\>//i;
+            $xml =~ s/(^|\n)[\n\s]*/$1/g;
+        }
         print $xml;
     }
     print "\n";
@@ -95,6 +105,7 @@ Usage:
     --html,                     use the HTML parser
     --output-separator,         set default separator to character ("\\n", ","...)
     --indent,                   indent the output
+    --pi,                       keep processing-instruction in the output
 EOF
    exit $error if $error; 
 }
