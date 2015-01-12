@@ -78,6 +78,7 @@ EOF
         $xml =~ s/(^|\n)[\n\s]*/$1/g;
         print $xml;
     }
+    print "\n";
 }
 
 sub help {
