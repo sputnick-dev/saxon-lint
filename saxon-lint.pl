@@ -47,7 +47,7 @@ foreach my $input (@ARGV) {
     my $https = 0;
 
     if ($input =~ m!^https://!) {
-        $input = GET_https($input) if $input =~ m!^https://!;
+        $input = GET_https($input);
         $https = 1;
     }
 
