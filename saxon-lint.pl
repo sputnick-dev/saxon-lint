@@ -17,7 +17,7 @@ my $classpath = "lib/tagsoup-1.2.jar${sep}lib/saxon9he.jar";
 my $queryclass = 'net.sf.saxon.Query';
 my $htmlclass = 'org.ccil.cowan.tagsoup.Parser';
 
-my $help = my $html = my $indent = my $pi = 0;
+my $help = my $html = my $indent = my $pi = my $res = 0;
 my $oDel = "\n"; # default output-separator
 my $xpath = '';
 
@@ -54,6 +54,8 @@ foreach my $input (@ARGV) {
         my $xml = qx(
             java -cp '$classpath' $queryclass -x:$htmlclass \Q-s:$input\E '-qs:declare default element namespace "http://www.w3.org/1999/xhtml";$xpath' -quit:on !item-separator=\$'$oDel' !indent=$indent
 		);
+        $res = $?;
+
         if ($pi) {
             $xml =~ s/^\<\?xml\s*version=.\d+\.\d+.\s*encoding=.[^"]+.\?\>/$&\n/i;
         }
@@ -79,6 +81,8 @@ foreach my $input (@ARGV) {
         my $xml = qx(
             java -cp "$classpath" "$queryclass" \Q-s:$input\E \Q-qs:$xpath\E -quit:on !item-separator=\$'$oDel' !encoding=utf-8 !indent=$indent
         );
+        $res = $?;
+
         if ($pi) {
             $xml =~ s/^\<\?xml\s*version=.\d+\.\d+.\s*encoding=.[^"]+.\?\>/$&\n/i;
         }
@@ -90,6 +94,8 @@ foreach my $input (@ARGV) {
         print $xml;
     }
     print "\n";
+
+    exit ($res > 0) ? 1 : 0;
 }
 
 sub help {
