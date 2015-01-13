@@ -54,7 +54,7 @@ Usage:
 saxon-lint.pl --xpath '//key[text()="String"]/following-sibling::string[1]' file.xml
 saxon-lint.pl --xpath 'for $r in 1 to count(/table/tr) return /title' file.xml
 curl -Ls 'http://domain.tld/file.xml' | saxon-lint.pl  --xpath '//key[1]' -
-saxon-lint.pl --xpath 'string-join(//a/@href, "\r\n"' http://domain.tld/file.html
+saxon-lint.pl --xpath 'string-join(//a/@href, "\r\n")' http://domain.tld/file.html
 ```
 
 To set the `string-join()` character (like the latest snippet) for Unix likes, hit <kbd>ctrl</kbd>+<kbd>v</kbd> and <kbd>ENTER</kbd>.    
