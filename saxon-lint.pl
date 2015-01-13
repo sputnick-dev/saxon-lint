@@ -43,7 +43,6 @@ help(0) unless @ARGV;
 $xpath =~ s/\$/\\\$/g;
 
 foreach my $input (@ARGV) {
-    $html = 1 if $input =~ m!^https?://!;
     my $https = 0;
 
     if ($input =~ m!^https://!) {
