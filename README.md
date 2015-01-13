@@ -13,14 +13,18 @@ The default output display each result nodes on a separate newline, this is suit
 
 ### Install prerequisites
  - java (openjdk...)
- - bash
  - perl
+ - libxml2
 
 And Perl modules :
 
   - `XML::LibXML` :`libxml-libxml-perl` debian package
-  - `LWP::UserAgent`, `LWP::protocol::https` & `Net::SSLeay` (if HTTPS is needed) : `libwww-perl libnet-ssleay-perl liblwp-protocol-https-perl` debian packages
+  - `LWP::UserAgent` & `LWP::protocol::https` (if HTTPS is needed) : `libwww-perl  liblwp-protocol-https-perl` debian packages
 
+With one command for Debian and derivatives :
+
+     apt-get update &&
+     apt-get install openjdk-7-jre perl libxml2 libxml2-dev libxml-libxml-perl libwww-perl liblwp-protocol-https-perl
 ### Install:
 
 ```sh
