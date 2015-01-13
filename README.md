@@ -1,5 +1,5 @@
 # saxon-lint
-This program is aimed to query XML/HTML files with command line in a shell like [XMLStarlet](http://xmlstar.sourceforge.net/) or [xmllint](http://xmlsoft.org/xmllint.html), but with the ability to use **XPath 3.0**/**XQuery 3.0** (Other command-line tools use XPath 1.0).
+This program is aimed to query XML/(X)HTML files via command line such as [XMLStarlet](http://xmlstar.sourceforge.net/) or [xmllint](http://xmlsoft.org/xmllint.html), but with the ability to use **XPath 3.0**/**XQuery 3.0** (Other command-line tools use XPath 1.0).
 
 As far as you have the prerequisites, this project is **cross-platform** (Linux, MacOsX/*BSD, Windows... ).
 
@@ -7,8 +7,8 @@ The default output display each result nodes on a separate newline, this is suit
 
 ### Main features
 
- - XPath 3.0/ XQuery 3.0 using Michael Kay's [Saxon-HE](http://sourceforge.net/projects/saxon) Java library
  - XML parsing via files
+ - XPath 3.0/ XQuery 3.0 using Michael Kay's [Saxon-HE](http://sourceforge.net/projects/saxon) Java library
  - (X)HTML parsing via HTTP, HTTPS or files, even with broken RealLife©®™ HTML using John Cowan's [TagSoup](http://home.ccil.org/~cowan/XML/tagsoup/) Java library
 
 ### Install prerequisites
