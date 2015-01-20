@@ -85,14 +85,10 @@ foreach my $input (@ARGV) {
 		);
         $res = $?;
 
-        if ($pi) {
-            $xml =~ s/^\<\?xml\s*version=.\d+\.\d+.\s*encoding=.[^"]+.\?\>/$&\n/i;
-        }
-        else {
-            # can't find a better way to do this with XML::LibXML
-            $xml =~ s/^\<\?xml\s*version=.\d+\.\d+.\s*encoding=.[^"]+.\?\>//i;
-            $xml =~ s/(^|\n)[\n\s]*/$1/g;
-        }
+        # can't find a better way to do this with XML::LibXML
+        $xml =~ s/^\<\?xml\s*version=.\d+\.\d+.\s*encoding=.[^"]+.\?\>//i;
+        $xml =~ s/(^|\n)[\n\s]*/$1/g;
+
         my $parser = XML::LibXML->new();
         my $doc = $parser->parse_balanced_chunk($xml);
 
@@ -112,14 +108,6 @@ foreach my $input (@ARGV) {
         );
         $res = $?;
 
-        if ($pi) {
-            $xml =~ s/^\<\?xml\s*version=.\d+\.\d+.\s*encoding=.[^"]+.\?\>/$&\n/i;
-        }
-        else {
-            # can't find a better way to do this with XML::LibXML
-            $xml =~ s/^\<\?xml\s*version=.\d+\.\d+.\s*encoding=.[^"]+.\?\>//i;
-            $xml =~ s/(^|\n)[\n\s]*/$1/g;
-        }
         print $xml;
     }
     print "\n";
@@ -141,7 +129,6 @@ Usage:
     --xslt,                     use XSL transformation
     --output-separator,         set default separator to character ("\\n", ","...)
     --indent,                   indent the output
-    --pi,                       keep processing-instruction in the output
 EOF
    exit $error if $error; 
 }
