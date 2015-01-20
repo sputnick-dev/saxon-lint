@@ -42,11 +42,11 @@ Usage:
     Parse the XML files and output the result of the parsing
     --help,                     this help
     --html,                     use the HTML parser
-    --indent,                   indent the output
-    --output-separator,         set default separator to character ("\n", ","...)
     --xpath,                    XPath expression
     --xquery,                   XQuery expression or file
-    --xslt,                     use XSL transformation
+    --xslt,                     use XSL transformation file
+    --indent,                   indent the output
+    --output-separator,         set default separator to character ("\n", ","...)
 
 ```
 
