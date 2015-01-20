@@ -104,7 +104,7 @@ foreach my $input (@ARGV) {
     # XML
     else {
         my $xml = qx(
-            java -cp "$classpath" "$queryclass" \Q-s:$input\E \Q-qs:$xpath\E -quit:on !item-separator=\$'$oDel' !encoding=utf-8 !indent=$indent
+            java -cp "$classpath" "$mainclass" \Q-s:$input\E \Q$q:$query\E -quit:on !item-separator=\$'$oDel' !encoding=utf-8 !indent=$indent
         );
         $res = $?;
 
@@ -124,13 +124,13 @@ Usage:
     Parse the XML files and output the result of the parsing
     --help,                     this help
     --xpath,                    XPath expression
-    --query,                    XQuery expression
+    --xquery,                   Xquery expression
     --html,                     use the HTML parser
     --xslt,                     use XSL transformation
     --output-separator,         set default separator to character ("\\n", ","...)
     --indent,                   indent the output
 EOF
-   exit $error if $error; 
+   exit $error if $error;
 }
 
 # http://stackoverflow.com/questions/17756926/remove-xml-namespaces-with-xmllibxml
