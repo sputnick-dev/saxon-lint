@@ -6,6 +6,7 @@ use strict; use warnings;
 use XML::LibXML;
 use Getopt::Long;
 use File::Basename;
+use autodie;
 
 use utf8;
 binmode $_, ":utf8" for qw/STDOUT STDIN STDERR/;
@@ -16,30 +17,58 @@ my $classpath = "lib/tagsoup-1.2.jar${sep}lib/saxon9he.jar";
 
 my $queryclass = 'net.sf.saxon.Query';
 my $htmlclass = 'org.ccil.cowan.tagsoup.Parser';
+my $transformclass = 'net.sf.saxon.Transform';
 
-my $help = my $html = my $indent = my $pi = my $res = 0;
+my $help = my $html = my $indent = my $pi = my $res = my $xslt = 0;
 my $oDel = "\n"; # default output-separator
-my $xpath = '';
+my $mainclass = my $q = my $xpath = my $query = my $xquery = my $oFile = '';
 
 GetOptions (
-    "html"                  => \$html,     # flag
     "help"                  => \$help,     # flag
+    "html"                  => \$html,     # flag
+    "xslt=s"                => \$xslt,     # string
     "output-separator=s"    => \$oDel,     # string
     "xpath=s"               => \$xpath,    # string
-    "query=s"               => \$xpath,    # string
+    "xquery=s"              => \$xquery,   # string
     "indent"                => \$indent,   # flag
-    "pi"                    => \$pi,       # flag
 ) or die("Error in command line arguments\n");
 
 $indent = $indent ? 'yes' : 'no';
 
-if (! length $xpath and @ARGV) {
-    warn "Missing mandatory --xpath or --query argument\n\n";
+if ($xslt) {
+    $mainclass = $transformclass;
+    $q = '-xsl';
+    $query = $xslt;
+}
+else {
+    $mainclass = $queryclass;
+    $q = '-qs';
+}
+
+if (! $xslt and ! length $xquery and ! length $xpath) {
+    warn "Missing mandatory --xpath --xslt or --xquery argument\n\n";
     help(1);
 }
 help($help) if $help == 1;
 help(0) unless @ARGV;
 
+if (length $xquery and not $xslt) {
+    { no warnings;
+        if (-s $xquery) {
+            {
+                local $/ = undef;
+                open my $fh, "<", $xquery;
+                $query = <$fh>;
+                close $fh;
+            }
+        }
+        else{
+            $query = $xquery;
+        }
+    }
+}
+
+$query = $xpath unless length $query;
 
 foreach my $input (@ARGV) {
     my $https = 0;
@@ -51,7 +80,8 @@ foreach my $input (@ARGV) {
 
     if ($html) {
         my $xml = qx(
-            java -cp '$classpath' $queryclass -x:$htmlclass \Q-s:$input\E '-qs:declare default element namespace "http://www.w3.org/1999/xhtml";$xpath' -quit:on !item-separator=\$'$oDel' !indent=$indent
+        set -x
+            java -cp '$classpath' $mainclass -x:$htmlclass \Q-s:$input\E '-qs:declare default element namespace "http://www.w3.org/1999/xhtml";$query' -quit:on !item-separator=\$'$oDel' !indent=$indent
 		);
         $res = $?;
 
@@ -108,6 +138,7 @@ Usage:
     --xpath,                    XPath expression
     --query,                    XQuery expression
     --html,                     use the HTML parser
+    --xslt,                     use XSL transformation
     --output-separator,         set default separator to character ("\\n", ","...)
     --indent,                   indent the output
     --pi,                       keep processing-instruction in the output
