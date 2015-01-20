@@ -83,7 +83,7 @@ foreach my $input (@ARGV) {
 
     if ($html) {
         my $xml = qx(
-        $verbose 
+        $verbose
             java -cp '$classpath' $mainclass -x:$htmlclass \Q-s:$input\E '-qs:declare default element namespace "http://www.w3.org/1999/xhtml";$query' -quit:on !item-separator=\$'$oDel' !indent=$indent
 		);
         $res = $?;
@@ -107,8 +107,8 @@ foreach my $input (@ARGV) {
     # XML
     else {
         my $xml = qx(
-        $verbose 
-            java -cp "$classpath" "$mainclass" \Q-s:$input\E '$q:$query' -quit:on !item-separator=\$'$oDel' !encoding=utf-8 !indent=$indent
+        $verbose
+            java -cp "$classpath" "$mainclass" \Q-s:$input\E \Q$q:$query\E -quit:on !item-separator=\$'$oDel' !encoding=utf-8 !indent=$indent
         );
         $res = $?;
 
