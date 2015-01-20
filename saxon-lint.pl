@@ -102,7 +102,12 @@ foreach my $input (@ARGV) {
             }
         }
         print $doc->toString();
-        unlink $input if $https;
+
+
+        if ($https) {
+            chomp $input;
+            unlink $input;
+        }
     }
     # XML
     else {
