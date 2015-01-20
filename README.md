@@ -42,9 +42,11 @@ Usage:
     Parse the XML files and output the result of the parsing
     --help,                     this help
     --html,                     use the HTML parser
+    --indent,                   indent the output
     --output-separator,         set default separator to character ("\n", ","...)
     --xpath,                    XPath expression
-    --query,                    XQuery expression
+    --xquery,                   XQuery expression or file
+    --xslt,                     use XSL transformation
 
 ```
 
@@ -54,6 +56,7 @@ Usage:
 saxon-lint.pl --xpath '//key[text()="String"]/following-sibling::string[1]' file.xml
 saxon-lint.pl --xpath 'for $r in 1 to count(/table/tr) return /title' file.xml
 curl -Ls 'http://domain.tld/file.xml' | saxon-lint.pl  --xpath '//key[1]' -
+saxon-lint.pl --xslt file.xsl file.xml
 saxon-lint.pl --html --xpath 'string-join(//a/@href, "\r\n")' http://x.y/z.html
 ```
 
