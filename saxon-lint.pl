@@ -19,7 +19,7 @@ my $queryclass = 'net.sf.saxon.Query';
 my $htmlclass = 'org.ccil.cowan.tagsoup.Parser';
 my $transformclass = 'net.sf.saxon.Transform';
 
-my $help = my $html = my $indent = my $pi = my $res = my $xslt = 0;
+my $help = my $html = my $indent = my $res = my $xslt = 0;
 my $oDel = "\n"; # default output-separator
 my $mainclass = my $q = my $xpath = my $query = my $xquery = my $oFile = my $verbose = '';
 
