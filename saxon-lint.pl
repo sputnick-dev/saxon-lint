@@ -88,20 +88,25 @@ foreach my $input (@ARGV) {
 		);
         $res = $?;
 
-        # can't find a better way to do this with XML::LibXML
-        $xml =~ s/^\<\?xml\s*version=.\d+\.\d+.\s*encoding=.[^"]+.\?\>//i;
-        $xml =~ s/(^|\n)[\n\s]*/$1/g;
+        if (length $xpath) {
+            # can't find a better way to do this with XML::LibXML
+            $xml =~ s/^\<\?xml\s*version=.\d+\.\d+.\s*encoding=.[^"]+.\?\>//i;
+            $xml =~ s/(^|\n)[\n\s]*/$1/g;
 
-        my $parser = XML::LibXML->new();
-        my $doc = $parser->parse_balanced_chunk($xml);
+            my $parser = XML::LibXML->new();
+            my $doc = $parser->parse_balanced_chunk($xml);
 
-        # remove namespaces for the whole document
-        for my $el ($doc->findnodes('//*')) {
-            if ($el->getNamespaces){
-                replace_without_ns($el);
+            # remove namespaces for the whole document
+            for my $el ($doc->findnodes('//*')) {
+                if ($el->getNamespaces){
+                    replace_without_ns($el);
+                }
             }
+            print $doc->toString();
         }
-        print $doc->toString();
+        else {
+            print $xml;
+        }
 
 
         if ($https) {
