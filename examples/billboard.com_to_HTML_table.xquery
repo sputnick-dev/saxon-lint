@@ -35,9 +35,6 @@ declare option saxon:output "indent=yes";
         <th>link</th>
       </tr>
       {
-(:
-    Let's iterate over all header nodes of the billboard.com 1st page
-:)
         for $a at $b in //article/header
             let $chart  := $a/span[1]/text()
             let $song   := normalize-space($a/h1/text())
