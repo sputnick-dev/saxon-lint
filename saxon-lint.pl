@@ -21,7 +21,7 @@ my $transformclass = 'net.sf.saxon.Transform';
 
 my $help = my $html = my $indent = my $pi = my $res = my $xslt = 0;
 my $oDel = "\n"; # default output-separator
-my $mainclass = my $q = my $xpath = my $query = my $xquery = my $oFile = '';
+my $mainclass = my $q = my $xpath = my $query = my $xquery = my $oFile = my $verbose = '';
 
 GetOptions (
     "help"                  => \$help,     # flag
@@ -31,9 +31,12 @@ GetOptions (
     "xpath=s"               => \$xpath,    # string
     "xquery=s"              => \$xquery,   # string
     "indent"                => \$indent,   # flag
+    "verbose"               => \$verbose,  # flag
 ) or die("Error in command line arguments\n");
 
 $indent = $indent ? 'yes' : 'no';
+
+$verbose = $verbose ? 'set -x' : 'set +x';
 
 if ($xslt) {
     $mainclass = $transformclass;
@@ -80,7 +83,7 @@ foreach my $input (@ARGV) {
 
     if ($html) {
         my $xml = qx(
-        set -x
+        $verbose 
             java -cp '$classpath' $mainclass -x:$htmlclass \Q-s:$input\E '-qs:declare default element namespace "http://www.w3.org/1999/xhtml";$query' -quit:on !item-separator=\$'$oDel' !indent=$indent
 		);
         $res = $?;
@@ -104,7 +107,8 @@ foreach my $input (@ARGV) {
     # XML
     else {
         my $xml = qx(
-            java -cp "$classpath" "$mainclass" \Q-s:$input\E \Q$q:$query\E -quit:on !item-separator=\$'$oDel' !encoding=utf-8 !indent=$indent
+        $verbose 
+            java -cp "$classpath" "$mainclass" \Q-s:$input\E '$q:$query' -quit:on !item-separator=\$'$oDel' !encoding=utf-8 !indent=$indent
         );
         $res = $?;
 
@@ -129,6 +133,7 @@ Usage:
     --xslt,                     use XSL transformation
     --output-separator,         set default separator to character ("\\n", ","...)
     --indent,                   indent the output
+    --verbose,                  verbose mode
 EOF
    exit $error if $error;
 }
