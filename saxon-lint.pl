@@ -9,7 +9,7 @@ use File::Basename;
 use autodie;
 
 use utf8;
-binmode $_, ":utf8" for qw/STDOUT STDIN STDERR/;
+use open qw/:std :utf8/;
 
 chdir dirname($0);
 my $sep = $^O =~ /(?:MSWin|cygwin)/i ? ";" : ":";
