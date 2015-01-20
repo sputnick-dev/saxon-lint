@@ -40,7 +40,6 @@ if (! length $xpath and @ARGV) {
 help($help) if $help == 1;
 help(0) unless @ARGV;
 
-$xpath =~ s/\$/\\\$/g;
 
 foreach my $input (@ARGV) {
     my $https = 0;
