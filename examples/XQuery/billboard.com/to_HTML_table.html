@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+      <style type="text/css">
+      body{font-family: Verdana, Arial, Helvetica, sans-serif}
+      table, th, td{border: 1px solid gray; border-collapse:collapse}
+      .alt1{background-color:mistyrose}
+      .alt2{background-color:azure}
+      .th{background-color:silver}
+    </style>
+      <title>Using XQuery</title>
+   </head>
+   <body>
+      <h1>saxon-lint XQuery demo</h1>
+      <table cellspacing="0" cellpadding="5">
+         <tr class="th">
+            <th>#</th>
+            <th>artist</th>
+            <th>song</th>
+            <th>link</th>
+         </tr>
+         <tr class="alt2">
+            <td>1</td>
+            <td>Taylor Swift</td>
+            <td>1989</td>
+            <td>
+               <a href="http://www.billboard.com/artist/371422/taylor-swift">http://www.billboard.com/artist/371422/taylor-swift</a>
+            </td>
+         </tr>
+         <tr class="alt1">
+            <td>2</td>
+            <td>Ed Sheeran</td>
+            <td>x</td>
+            <td>
+               <a href="http://www.billboard.com/artist/276089/ed-sheeran">http://www.billboard.com/artist/276089/ed-sheeran</a>
+            </td>
+         </tr>
+         <tr class="alt2">
+            <td>3</td>
+            <td>Nicki Minaj</td>
+            <td>The Pinkprint</td>
+            <td>
+               <a href="http://www.billboard.com/artist/312259/nicki-minaj">http://www.billboard.com/artist/312259/nicki-minaj</a>
+            </td>
+         </tr>
+         <tr class="alt1">
+            <td>4</td>
+            <td>Sam Smith</td>
+            <td>In The Lonely Hour</td>
+            <td>
+               <a href="http://www.billboard.com/artist/5811918/sam-smith">http://www.billboard.com/artist/5811918/sam-smith</a>
+            </td>
+         </tr>
+         <tr class="alt2">
+            <td>5</td>
+            <td>Rae Sremmurd</td>
+            <td>SremmLife</td>
+            <td>
+               <a href="http://www.billboard.com/artist/6140339/rae-sremmurd">http://www.billboard.com/artist/6140339/rae-sremmurd</a>
+            </td>
+         </tr>
+         <tr class="alt1">
+            <td>6</td>
+            <td>Hozier</td>
+            <td>Hozier</td>
+            <td>
+               <a href="http://www.billboard.com/artist/6059764/hozier">http://www.billboard.com/artist/6059764/hozier</a>
+            </td>
+         </tr>
+         <tr class="alt2">
+            <td>7</td>
+            <td>J. Cole</td>
+            <td>2014 Forest Hills Drive</td>
+            <td>
+               <a href="http://www.billboard.com/artist/276541/j-cole">http://www.billboard.com/artist/276541/j-cole</a>
+            </td>
+         </tr>
+         <tr class="alt1">
+            <td>8</td>
+            <td>Soundtrack</td>
+            <td>Guardians Of The Galaxy: Awesome Mix Vol. 1</td>
+            <td>
+               <a href="http://www.billboard.com/artist/280012/soundtrack">http://www.billboard.com/artist/280012/soundtrack</a>
+            </td>
+         </tr>
+         <tr class="alt2">
+            <td>9</td>
+            <td>One Direction</td>
+            <td>FOUR</td>
+            <td>
+               <a href="http://www.billboard.com/artist/314021/one-direction">http://www.billboard.com/artist/314021/one-direction</a>
+            </td>
+         </tr>
+         <tr class="alt1">
+            <td>10</td>
+            <td>Ariana Grande</td>
+            <td>My Everything</td>
+            <td>
+               <a href="http://www.billboard.com/artist/1484343/ariana-grande">http://www.billboard.com/artist/1484343/ariana-grande</a>
+            </td>
+         </tr>
+         <tr class="alt2">
+            <td>11</td>
+            <td>Soundtrack</td>
+            <td>Into The Woods</td>
+            <td>
+               <a href="http://www.billboard.com/artist/280012/soundtrack">http://www.billboard.com/artist/280012/soundtrack</a>
+            </td>
+         </tr>
+         <tr class="alt1">
+            <td>12</td>
+            <td>Sam Hunt</td>
+            <td>Montevallo</td>
+            <td>
+               <a href="http://www.billboard.com/artist/5841724/sam-hunt">http://www.billboard.com/artist/5841724/sam-hunt</a>
+            </td>
+         </tr>
+         <tr class="alt2">
+            <td>13</td>
+            <td>Soundtrack</td>
+            <td>Annie</td>
+            <td>
+               <a href="http://www.billboard.com/artist/280012/soundtrack">http://www.billboard.com/artist/280012/soundtrack</a>
+            </td>
+         </tr>
+         <tr class="alt1">
+            <td>14</td>
+            <td>Carrie Underwood</td>
+            <td>Greatest Hits: Decade #1</td>
+            <td>
+               <a href="http://www.billboard.com/artist/298758/carrie-underwood">http://www.billboard.com/artist/298758/carrie-underwood</a>
+            </td>
+         </tr>
+         <tr class="alt2">
+            <td>15</td>
+            <td>Maroon 5</td>
+            <td>V</td>
+            <td>
+               <a href="http://www.billboard.com/artist/309663/maroon-5">http://www.billboard.com/artist/309663/maroon-5</a>
+            </td>
+         </tr>
+         <tr class="alt1">
+            <td>16</td>
+            <td>Soundtrack</td>
+            <td>Frozen</td>
+            <td>
+               <a href="http://www.billboard.com/artist/277740/various-artists">http://www.billboard.com/artist/277740/various-artists</a>
+            </td>
+         </tr>
+         <tr class="alt2">
+            <td>17</td>
+            <td>Jason Aldean</td>
+            <td>Old Boots, New Dirt</td>
+            <td>
+               <a href="http://www.billboard.com/artist/304236/jason-aldean">http://www.billboard.com/artist/304236/jason-aldean</a>
+            </td>
+         </tr>
+         <tr class="alt1">
+            <td>18</td>
+            <td>Iggy Azalea</td>
+            <td>Reclassified</td>
+            <td>
+               <a href="http://www.billboard.com/artist/5694588/iggy-azalea">http://www.billboard.com/artist/5694588/iggy-azalea</a>
+            </td>
+         </tr>
+         <tr class="alt2">
+            <td>19</td>
+            <td>OneRepublic</td>
+            <td>Native</td>
+            <td>
+               <a href="http://www.billboard.com/artist/314580/onerepublic">http://www.billboard.com/artist/314580/onerepublic</a>
+            </td>
+         </tr>
+         <tr class="alt1">
+            <td>20</td>
+            <td>Sia</td>
+            <td>1000 Forms Of Fear</td>
+            <td>
+               <a href="http://www.billboard.com/artist/279248/sia">http://www.billboard.com/artist/279248/sia</a>
+            </td>
+         </tr>
+      </table>
+   </body>
+</html>
