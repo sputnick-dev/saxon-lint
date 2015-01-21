@@ -1,5 +1,5 @@
 # saxon-lint
-This program is aimed to query XML/(X)HTML files via command line such as [XMLStarlet](http://xmlstar.sourceforge.net/) or [xmllint](http://xmlsoft.org/xmllint.html), but with the ability to use **XPath 3.0**/**XQuery 3.0** (Other command-line tools use XPath 1.0).
+This program is aimed to query XML/(X)HTML files via command line such as [XMLStarlet](http://xmlstar.sourceforge.net/) or [xmllint](http://xmlsoft.org/xmllint.html), but with the ability to use **XPath 3.0**/**XQuery 3.0**/**XSLT 2.0** (Other command-line tools use XPath 1.0).
 
 As far as you have the prerequisites, this project is **cross-platform** (Linux, MacOsX/*BSD, Windows... ).
 
@@ -8,7 +8,7 @@ The default XPath output display each result nodes on a separate newline, this i
 ### Main features
 
  - XML parsing via files
- - XPath 3.0/ XQuery 3.0 using Michael Kay's [Saxon-HE](http://sourceforge.net/projects/saxon) Java library
+ - XPath 3.0/XQuery 3.0/**XSLT 2.0** using Michael Kay's [Saxon-HE](http://sourceforge.net/projects/saxon) Java library
  - (X)HTML parsing via HTTP, HTTPS or files, even with broken RealLife©®™ HTML using John Cowan's [TagSoup](http://home.ccil.org/~cowan/XML/tagsoup/) Java library
 
 ### Install prerequisites
@@ -62,6 +62,8 @@ saxon-lint.pl --html --xpath 'string-join(//a/@href, "\r\n")' http://x.y/z.html
 
 To set the `string-join()` character (like the latest snippet) for Unix likes, hit <kbd>ctrl</kbd>+<kbd>v</kbd> and <kbd>ENTER</kbd>.    
 For Windows, just put `"\r\n"`.
+
+Check [others examples](https://github.com/sputnick-dev/saxon-lint/tree/master/examples).
 
 ### Tricks:
 To be able to run the command without dot-slash : `./saxon-lint`, you need to modify the PATH variable. For windows, check http://www.computerhope.com/issues/ch000549.htm    
