@@ -9,10 +9,11 @@ use strict; use warnings;
 use Unicode::Normalize;
 use charnames ':full';
 
-use Test::More tests => 8;
+use Test::More tests => 9;
 
 like(qx(./examples/XPath/get_free_links.sh), qr!http://!, 'match http links');
 like(qx(./examples/XPath/001.sh), qr!1,2,3!, 'match 1,2,3');
+like(qx(./examples/XPath/002.sh), qr!1\n2\n3!s, 'match 1,2,3');
 like(qx(./examples/XQuery/billboard.com/to_HTML_table.sh), qr!Check file!);
 like(qx(cat examples/XQuery/billboard.com/to_HTML_table.html), qr!\s+<td>Hoodie Allen Featuring!);
 my $x = qx(./examples/XQuery/billboard.com/simple_text_parsing.sh);

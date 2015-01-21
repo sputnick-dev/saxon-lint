@@ -90,11 +90,11 @@ foreach my $input (@ARGV) {
     if ($html) {
         my $xml = qx(
             $verbose
-            java -cp '$classpath' $mainclass -x:$htmlclass \Q-s:$input\E '-qs:declare default element namespace "http://www.w3.org/1999/xhtml";$query' -quit:on !item-separator=\$'$oDel' !indent=$indent
+            java -cp '$classpath' $mainclass -x:$htmlclass \Q-s:$input\E '-qs:declare default element namespace "http://www.w3.org/1999/xhtml";$query' -quit:on !item-separator='$oDel' !indent=$indent
         );
         $res = $?;
 
-        remove_PI(\$xml);
+        remove_PI(\$xml) if $pi;
         print cleanUP(\$xpath, \$xml);
 
         if ($https) {
