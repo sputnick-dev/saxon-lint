@@ -8,7 +8,7 @@ The default XPath output display each result nodes on a separate newline, this i
 ### Main features
 
  - XML parsing via files
- - XPath 3.0/XQuery 3.0/**XSLT 2.0** using Michael Kay's [Saxon-HE](http://sourceforge.net/projects/saxon) Java library
+ - XPath 3.0/XQuery 3.0/XSLT 2.0 using Michael Kay's [Saxon-HE](http://sourceforge.net/projects/saxon) Java library
  - (X)HTML parsing via HTTP, HTTPS or files, even with broken RealLife©®™ HTML using John Cowan's [TagSoup](http://home.ccil.org/~cowan/XML/tagsoup/) Java library
 
 ### Install prerequisites
