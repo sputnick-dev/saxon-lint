@@ -89,9 +89,9 @@ foreach my $input (@ARGV) {
     # HTML
     if ($html) {
         my $xml = qx(
-        $verbose
+            $verbose
             java -cp '$classpath' $mainclass -x:$htmlclass \Q-s:$input\E '-qs:declare default element namespace "http://www.w3.org/1999/xhtml";$query' -quit:on !item-separator=\$'$oDel' !indent=$indent
-		);
+        );
         $res = $?;
 
         remove_PI(\$xml) if $pi and not length $xquery;
@@ -105,7 +105,7 @@ foreach my $input (@ARGV) {
     # XML
     else {
         my $xml = qx(
-        $verbose
+            $verbose
             java -cp "$classpath" "$mainclass" \Q-s:$input\E '$q:$query' -quit:on !item-separator=\$'$oDel' !encoding=utf-8 !indent=$indent
         );
         $res = $?;
@@ -194,6 +194,7 @@ sub replace_without_ns {
 
 sub GET_https {
     my $arg = shift;
+    my $path;
 
     require LWP::UserAgent;
     use File::Temp;
@@ -207,7 +208,6 @@ sub GET_https {
     print $fh $res->content;
 	
     my $filename = $fh->filename;
-    my $path;
 
     if ($^O =~/cygwin/i) {
         $path = qx(cygpath -m "/cygdrive/c/cygwin$filename");
