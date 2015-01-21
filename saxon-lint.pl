@@ -37,6 +37,10 @@ chdir dirname($0);
 my $sep = $^O =~ /(?:MSWin|cygwin)/i ? ";" : ":";
 my $classpath = $html ? "$htmlparser${sep}$xmlparser" : $xmlparser;
 
+$indent = $indent ? 'yes' : 'no';
+if ($pi == 0) {
+    $pi = 1 if $html or length $xpath;
+}
 $verbose = $verbose ? 'set -x' : 'set +x';
 
 if ($xslt) {
@@ -89,7 +93,7 @@ foreach my $input (@ARGV) {
 		);
         $res = $?;
 
-        remove_PI(\$xml) if $pi;
+        remove_PI(\$xml) if $pi and not length $xquery;
         print cleanUP(\$xpath, \$xml);
 
         if ($https) {
