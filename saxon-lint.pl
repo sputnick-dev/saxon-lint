@@ -88,26 +88,7 @@ foreach my $input (@ARGV) {
 		);
         $res = $?;
 
-        if (length $xpath) {
-            # can't find a better way to do this with XML::LibXML
-            $xml =~ s/^\<\?xml\s*version=.\d+\.\d+.\s*encoding=.[^"]+.\?\>//i;
-            $xml =~ s/(^|\n)[\n\s]*/$1/g;
-
-            my $parser = XML::LibXML->new();
-            my $doc = $parser->parse_balanced_chunk($xml);
-
-            # remove namespaces for the whole document
-            for my $el ($doc->findnodes('//*')) {
-                if ($el->getNamespaces){
-                    replace_without_ns($el);
-                }
-            }
-            print $doc->toString();
-        }
-        else {
-            print $xml;
-        }
-
+        print cleanUP(\$xpath, \$xml);
 
         if ($https) {
             chomp $input;
@@ -122,7 +103,7 @@ foreach my $input (@ARGV) {
         );
         $res = $?;
 
-        print $xml;
+        print cleanUP(\$xpath, \$xml);
     }
     print "\n";
 
@@ -146,6 +127,30 @@ Usage:
     --verbose,                  verbose mode
 EOF
    exit $error if $error;
+}
+
+sub cleanUP {
+    my ($xpath, $xml) = @_;
+
+    if (length $$xpath) {
+        # can't find a better way to do this with XML::LibXML
+        $$xml =~ s/^\<\?xml\s*version=.\d+\.\d+.\s*encoding=.[^"]+.\?\>//i;
+        $$xml =~ s/(^|\n)[\n\s]*/$1/g;
+
+        my $parser = XML::LibXML->new();
+        my $doc = $parser->parse_balanced_chunk($$xml);
+
+        # remove namespaces for the whole document
+        for my $el ($doc->findnodes('//*')) {
+            if ($el->getNamespaces){
+                replace_without_ns($el);
+            }
+        }
+        return $doc->toString();
+    }
+    else {
+        return $$xml;
+    }
 }
 
 # http://stackoverflow.com/questions/17756926/remove-xml-namespaces-with-xmllibxml
