@@ -42,12 +42,14 @@ Usage:
     saxon-lint.pl <opts> <file(s)>
     Parse the XML files and output the result of the parsing
     --help,                     this help
-    --html,                     use the HTML parser
     --xpath,                    XPath expression
-    --xquery,                   XQuery expression or file
-    --xslt,                     use XSL transformation file
-    --indent,                   indent the output
+    --xquery,                   Xquery expression
+    --html,                     use the HTML parser
+    --xslt,                     use XSL transformation
     --output-separator,         set default separator to character ("\n", ","...)
+    --indent,                   indent the output
+    --no-pi,                    remove Processing Instruction (<?xml ...>)
+    --verbose,                  verbose mode
 
 ```
 
@@ -61,17 +63,17 @@ saxon-lint.pl --xslt file.xsl file.xml
 saxon-lint.pl --html --xpath 'string-join(//a/@href, "\r\n")' http://x.y/z.html
 ```
 
-To set the `string-join()` character (like the latest snippet) for Unix likes, hit <kbd>ctrl</kbd>+<kbd>v</kbd> and <kbd>ENTER</kbd>.    
+To set the `string-join()` character (like the latest snippet) for Unix likes, hit <kbd>ctrl</kbd>+<kbd>v</kbd> and <kbd>ENTER</kbd>.
 For Windows, just put `"\r\n"`.
 
 Check [others examples](https://github.com/sputnick-dev/saxon-lint/tree/master/examples).
 
 ### Tricks:
-To be able to run the command without dot-slash : `./saxon-lint`, you need to modify the PATH variable. For windows, check http://www.computerhope.com/issues/ch000549.htm    
+To be able to run the command without dot-slash : `./saxon-lint`, you need to modify the PATH variable. For windows, check http://www.computerhope.com/issues/ch000549.htm
 For Unix Likes, modify `~/.bashrc` by searching `PATH=` and put `PATH=$PATH:/PATH/TO/saxon-lint_DIRECTORY`, then `source ~/.bashrc`
 
-If you want to enable `bash-completion`, you have to install this program and move    
-`usr_share_bash-completion_completions_saxon-lint`    
+If you want to enable `bash-completion`, you have to install this program and move
+`usr_share_bash-completion_completions_saxon-lint`
 to `/usr/share/bash-completion/completions/saxon-lint` (or similar).
 
 ### TroobleShooting:
