@@ -1,0 +1,10 @@
+<products>
+  <product>
+    <id>1</id>
+    <other>y</other>
+    <notarget>x</notarget>
+    <target>num1</target>
+    <target>num2</target>
+    <target>num3</target>
+  </product>
+</products>

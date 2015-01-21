@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<bookstore>
+    <book>
+        <title>Agag</title>
+        <price>111</price>
+    </book>
+    <book>
+        <title>Zetaz</title>
+        <price>2</price>
+    </book>
+    <book name="Hui">
+        <title>Hui</title>
+        <price>333</price>
+    </book>
+</bookstore>
