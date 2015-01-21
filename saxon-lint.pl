@@ -94,7 +94,7 @@ foreach my $input (@ARGV) {
         );
         $res = $?;
 
-        remove_PI(\$xml) if $pi and not length $xquery;
+        remove_PI(\$xml);
         print cleanUP(\$xpath, \$xml);
 
         if ($https) {
