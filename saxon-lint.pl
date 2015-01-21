@@ -164,6 +164,8 @@ sub remove_PI {
     # can't find a better way to do this with XML::LibXML
     $$xml =~ s/^\<\?xml\s*version=.\d+\.\d+.\s*encoding=.[^"]+.\?\>//i;
     $$xml =~ s/(^|\n)[\n\s]*/$1/g;
+
+    return;
 }
 
 # http://stackoverflow.com/questions/17756926/remove-xml-namespaces-with-xmllibxml
