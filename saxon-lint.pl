@@ -86,6 +86,7 @@ foreach my $input (@ARGV) {
         $https = 1;
     }
 
+    # HTML
     if ($html) {
         my $xml = qx(
         $verbose
