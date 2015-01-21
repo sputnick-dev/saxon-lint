@@ -5,14 +5,18 @@ _saxon-lint()
     local cur prev words cword
     _init_completion || return
 
-    if [[ "$cur" == -* ]]; then
+    case ${prev} in
+    --xslt|--xquery) _filedir
+    *)
         COMPREPLY=( $( compgen -W '$( _parse_help "$1" )' -- "$cur" ) )
         COMPREPLY=( "${COMPREPLY[@]%:}" )
+        _filedir
         return 0
-    fi
+        ;;
+    esac
 
     _filedir '@(*ml|htm|svg?(z)|xs[dl]|rng|wsdl|jnlp|tld)?(.gz)'
 } &&
-complete -F _saxon-lint saxon-lint.pl saxon-lint
+complete -F _saxon-lint saxon-lint.pl saxon-lint s
 
 # ex: ts=4 sw=4 et filetype=sh
