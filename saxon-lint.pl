@@ -106,7 +106,7 @@ foreach my $input (@ARGV) {
     else {
         my $xml = qx(
             $verbose
-            java -cp "$classpath" "$mainclass" \Q-s:$input\E '$q:$query' -quit:on !item-separator=\$'$oDel' !encoding=utf-8 !indent=$indent
+            java -cp "$classpath" "$mainclass" \Q-s:$input\E '$q:$query' -quit:on !item-separator='$oDel' !encoding=utf-8 !indent=$indent
         );
         $res = $?;
 
