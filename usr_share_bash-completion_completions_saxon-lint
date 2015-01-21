@@ -17,6 +17,6 @@ _saxon-lint()
 
     _filedir '@(*ml|htm|svg?(z)|xs[dl]|rng|wsdl|jnlp|tld)?(.gz)'
 } &&
-complete -F _saxon-lint saxon-lint.pl saxon-lint s
+complete -F _saxon-lint saxon-lint.pl saxon-lint
 
 # ex: ts=4 sw=4 et filetype=sh
