@@ -11,10 +11,8 @@ use autodie;
 use utf8;
 use open qw/:std :utf8/;
 
-chdir dirname($0);
-my $sep = $^O =~ /(?:MSWin|cygwin)/i ? ";" : ":";
-my $classpath = "lib/tagsoup-1.2.jar${sep}lib/saxon9he.jar";
-
+my $htmlparser = 'lib/tagsoup-1.2.jar';
+my $xmlparser = 'lib/saxon9he.jar';
 my $queryclass = 'net.sf.saxon.Query';
 my $htmlclass = 'org.ccil.cowan.tagsoup.Parser';
 my $transformclass = 'net.sf.saxon.Transform';
@@ -35,7 +33,9 @@ GetOptions (
     "verbose"               => \$verbose,  # flag
 ) or die("Error in command line arguments\n");
 
-$indent = $indent ? 'yes' : 'no';
+chdir dirname($0);
+my $sep = $^O =~ /(?:MSWin|cygwin)/i ? ";" : ":";
+my $classpath = $html ? "$htmlparser${sep}$xmlparser" : $xmlparser;
 
 $verbose = $verbose ? 'set -x' : 'set +x';
 
