@@ -43,7 +43,7 @@ Usage:
     Parse the XML files and output the result of the parsing
     --help,                     this help
     --xpath,                    XPath expression
-    --xquery,                   Xquery expression
+    --xquery,                   Xquery expression or file
     --html,                     use the HTML parser
     --xslt,                     use XSL transformation
     --output-separator,         set default separator to character ("\n", ","...)
