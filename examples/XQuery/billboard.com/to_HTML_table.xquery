@@ -35,17 +35,17 @@ declare option saxon:output "indent=yes";
         <th>link</th>
       </tr>
       {
-        for $a at $b in //article/header
-            let $chart  := $a/span[1]/text()
-            let $song   := normalize-space($a/h1/text())
-            let $artist := $a/p[@class="chart_info"]/a/text()
-            let $link   := string($a/p[@class="chart_info"]/a/@href)
+        for $a at $b in //article[@id]
+             let $chart    := $a//span[@class="this-week"]/text()
+             let $artist   := normalize-space($a//div[@class="row-title"]/h3/a/text())
+             let $song     := normalize-space($a//h2/text())
+             let $link     := string($a//div[@class="row-title"]/h3/a/@href)
         return
         <tr class="{if ($b mod 2 = 0) then "alt1" else "alt2"}">
         <td>{$chart}</td>
         <td>{$artist}</td>
         <td>{$song}</td>
-        <td><a href="http://www.billboard.com{$link}">http://www.billboard.com{$link}</a></td>
+        <td><a href="{$link}">{$link}</a></td>
       </tr>}
     </table>
   </body>

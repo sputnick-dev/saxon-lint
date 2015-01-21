@@ -1,15 +1,14 @@
 #!/bin/bash
 
-page=0
-saxon-lint --no-pi --html --xquery '
-    for $a in //article/header
-         let $chart    := $a/span[1]/text()
-         let $song     := normalize-space($a/h1/text())
-         let $artist   := $a/p[@class="chart_info"]/a/text()
-         let $link     := string($a/p[@class="chart_info"]/a/@href)
+saxon-lint --html --xquery '
+    for $a in //article[@id]
+         let $chart    := $a//span[@class="this-week"]/text()
+         let $artist   := normalize-space($a//div[@class="row-title"]/h3/a/text())
+         let $song     := normalize-space($a//h2/text())
+         let $link     := string($a//div[@class="row-title"]/h3/a/@href)
     return
-         concat(
+        concat(
              "[", $chart, "] ", $song, " - ", $artist,
-             " : http://www.billboard.com", $link
+             " : ", $link
          )
-' "http://www.billboard.com/charts/billboard-200?page=$page"
+' examples/XQuery/billboard.com/input.html
