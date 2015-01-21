@@ -15,6 +15,7 @@ The default XPath output display each result nodes on a separate newline, this i
  - java (openjdk...)
  - perl
  - libxml2
+ - git (or use the .zip)
 
 And Perl modules :
 
