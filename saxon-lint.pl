@@ -137,8 +137,6 @@ sub cleanUP {
     my ($xpath, $xml) = @_;
 
     if (length $$xpath) {
-        remove_PI($xml);
-
         my $parser = XML::LibXML->new();
         my $doc = $parser->parse_balanced_chunk($$xml);
 
