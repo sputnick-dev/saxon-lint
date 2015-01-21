@@ -19,7 +19,7 @@ my $queryclass = 'net.sf.saxon.Query';
 my $htmlclass = 'org.ccil.cowan.tagsoup.Parser';
 my $transformclass = 'net.sf.saxon.Transform';
 
-my $help = my $html = my $indent = my $res = my $xslt = 0;
+my $help = my $html = my $indent = my $res = my $xslt = my $pi = 0;
 my $oDel = "\n"; # default output-separator
 my $mainclass = my $q = my $xpath = my $query = my $xquery = my $oFile = my $verbose = '';
 
@@ -31,6 +31,7 @@ GetOptions (
     "xpath=s"               => \$xpath,    # string
     "xquery=s"              => \$xquery,   # string
     "indent"                => \$indent,   # flag
+    "no-pi"                 => \$pi,       # flag
     "verbose"               => \$verbose,  # flag
 ) or die("Error in command line arguments\n");
 
@@ -88,6 +89,7 @@ foreach my $input (@ARGV) {
 		);
         $res = $?;
 
+        remove_PI(\$xml) if $pi;
         print cleanUP(\$xpath, \$xml);
 
         if ($https) {
@@ -103,6 +105,7 @@ foreach my $input (@ARGV) {
         );
         $res = $?;
 
+        remove_PI(\$xml) if $pi;
         print cleanUP(\$xpath, \$xml);
     }
     print "\n";
@@ -124,6 +127,7 @@ Usage:
     --xslt,                     use XSL transformation
     --output-separator,         set default separator to character ("\\n", ","...)
     --indent,                   indent the output
+    --no-pi,                    remove Processing Instruction (<?xml ...>)
     --verbose,                  verbose mode
 EOF
    exit $error if $error;
@@ -133,9 +137,7 @@ sub cleanUP {
     my ($xpath, $xml) = @_;
 
     if (length $$xpath) {
-        # can't find a better way to do this with XML::LibXML
-        $$xml =~ s/^\<\?xml\s*version=.\d+\.\d+.\s*encoding=.[^"]+.\?\>//i;
-        $$xml =~ s/(^|\n)[\n\s]*/$1/g;
+        remove_PI($xml);
 
         my $parser = XML::LibXML->new();
         my $doc = $parser->parse_balanced_chunk($$xml);
@@ -151,6 +153,14 @@ sub cleanUP {
     else {
         return $$xml;
     }
+}
+
+sub remove_PI {
+    my $xml = shift;
+
+    # can't find a better way to do this with XML::LibXML
+    $$xml =~ s/^\<\?xml\s*version=.\d+\.\d+.\s*encoding=.[^"]+.\?\>//i;
+    $$xml =~ s/(^|\n)[\n\s]*/$1/g;
 }
 
 # http://stackoverflow.com/questions/17756926/remove-xml-namespaces-with-xmllibxml
