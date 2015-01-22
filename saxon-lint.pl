@@ -17,7 +17,7 @@ my $queryclass = 'net.sf.saxon.Query';
 my $htmlclass = 'org.ccil.cowan.tagsoup.Parser';
 my $transformclass = 'net.sf.saxon.Transform';
 
-my $help = my $html = my $indent = my $res = my $xslt = my $pi = 0;
+my $help = my $html = my $indent = my $res = my $xslt = my $nopi = 0;
 my $oDel = "\n"; # default output-separator
 my $mainclass = my $xpath = my $query = my $xquery = my $verbose = '';
 
@@ -29,7 +29,7 @@ GetOptions (
     "xpath=s"               => \$xpath,    # string
     "xquery=s"              => \$xquery,   # string
     "indent"                => \$indent,   # flag
-    "no-pi"                 => \$pi,       # flag
+    "no-pi"                 => \$nopi,     # flag
     "verbose"               => \$verbose,  # flag
 ) or die("Error in command line arguments\n");
 
@@ -38,8 +38,9 @@ my $sep = $^O =~ /(?:MSWin|cygwin)/i ? ";" : ":";
 my $classpath = $html ? "$htmlparser${sep}$xmlparser" : $xmlparser;
 
 $indent = $indent ? 'yes' : 'no';
-if ($pi == 0) {
-    $pi = 1 if $html or length $xpath;
+
+if ($nopi == 0) {
+    $nopi = 1 if $html and not length $xquery;
 }
 $verbose = $verbose ? 'set -x' : 'set +x';
 
