@@ -19,7 +19,7 @@ my $transformclass = 'net.sf.saxon.Transform';
 
 my $help = my $html = my $indent = my $res = my $xslt = my $pi = 0;
 my $oDel = "\n"; # default output-separator
-my $mainclass = my $q = my $xpath = my $query = my $xquery = my $oFile = my $verbose = my $s = '';
+my $mainclass = my $xpath = my $query = my $xquery = my $verbose = '';
 
 GetOptions (
     "help"                  => \$help,     # flag
