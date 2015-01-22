@@ -60,11 +60,12 @@ $query = $xpath unless length $query;
 # Base command
 my $cmd = qq#java -cp "$classpath" "$mainclass" !encoding=utf-8 !indent=$indent -quit:on !item-separator='$oDel'#;
 
+help(0) if $help == 1;
+
 if (! $xslt and ! length $xquery and ! length $xpath) {
     warn "Missing mandatory --xpath --xslt or --xquery argument\n\n";
     help(1);
 }
-help($help) if $help == 1;
 
 if (length $xquery and not @ARGV) {
     $cmd .= qq/ '-q:$xquery'/;
