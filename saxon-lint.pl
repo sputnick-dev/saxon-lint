@@ -63,7 +63,6 @@ if (! $xslt and ! length $xquery and ! length $xpath) {
     help(1);
 }
 help($help) if $help == 1;
-help(0) unless @ARGV;
 
 if (length $xquery and not @ARGV) {
     $cmd .= qq/ '-q:$xquery'/;
