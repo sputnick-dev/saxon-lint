@@ -22,7 +22,7 @@ my $oDel = "\n"; # default output-separator
 my $mainclass = my $xpath = my $query = my $xquery = my $verbose = '';
 my @extra = ();
 GetOptions (
-    "help"                  => \$help,     # flag
+    "h|help"                  => \$help,     # flag
     "html"                  => \$html,     # flag
     "xslt=s"                => \$xslt,     # string
     "output-separator=s"    => \$oDel,     # string
@@ -31,7 +31,7 @@ GetOptions (
     "indent"                => \$indent,   # flag
     "no-pi"                 => \$nopi,     # flag
     "saxon-opt=s"           => \@extra,    # array
-    "verbose"               => \$verbose,  # flag
+    "v|verbose"               => \$verbose,  # flag
 ) or die("Error in command line arguments\n");
 
 chdir dirname($0);
