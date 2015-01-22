@@ -19,7 +19,7 @@ my $transformclass = 'net.sf.saxon.Transform';
 
 my $help = my $html = my $indent = my $res = my $xslt = my $pi = 0;
 my $oDel = "\n"; # default output-separator
-my $mainclass = my $q = my $xpath = my $query = my $xquery = my $oFile = my $verbose = '';
+my $mainclass = my $q = my $xpath = my $query = my $xquery = my $oFile = my $verbose = my $s = '';
 
 GetOptions (
     "help"                  => \$help,     # flag
@@ -45,13 +45,18 @@ $verbose = $verbose ? 'set -x' : 'set +x';
 
 if ($xslt) {
     $mainclass = $transformclass;
-    $q = '-xsl';
     $query = $xslt;
+}
+elsif (length $xquery) {
+    $mainclass = $queryclass;
 }
 else {
     $mainclass = $queryclass;
-    $q = '-qs';
 }
+
+$query = $xpath unless length $query;
+
+my $cmd = qq#java -cp "$classpath" "$mainclass" !encoding=utf-8 !indent=$indent -quit:on !item-separator='$oDel'#;
 
 if (! $xslt and ! length $xquery and ! length $xpath) {
     warn "Missing mandatory --xpath --xslt or --xquery argument\n\n";
@@ -59,6 +64,11 @@ if (! $xslt and ! length $xquery and ! length $xpath) {
 }
 help($help) if $help == 1;
 help(0) unless @ARGV;
+
+if (length $xquery and not @ARGV) {
+    $cmd .= qq/ '-q:$xquery'/;
+    execute($cmd, undef, undef);
+}
 
 if (length $xquery and not $xslt) {
     { no warnings;
@@ -76,8 +86,6 @@ if (length $xquery and not $xslt) {
     }
 }
 
-$query = $xpath unless length $query;
-
 foreach my $input (@ARGV) {
     my $https = 0;
 
@@ -86,33 +94,38 @@ foreach my $input (@ARGV) {
         $https = 1;
     }
 
-    # HTML
+    $cmd .= qq# -s:$input#;
+
     if ($html) {
-        my $xml = qx(
-            $verbose
-            java -cp '$classpath' $mainclass -x:$htmlclass \Q-s:$input\E '-qs:declare default element namespace "http://www.w3.org/1999/xhtml";$query' -quit:on !item-separator='$oDel' !indent=$indent
-        );
-        $res = $?;
-
-        remove_PI(\$xml) if $pi;
-        print cleanUP(\$xpath, \$xml);
-
-        if ($https) {
-            chomp $input;
-            unlink $input;
-        }
+        $cmd .= qq# -x:$htmlclass '-qs:declare default element namespace "http://www.w3.org/1999/xhtml";$query'#;
     }
-    # XML
+    elsif ($xslt) {
+        $cmd .= qq/ '-xsl:$query'/;
+    }
     else {
-        my $xml = qx(
-            $verbose
-            java -cp "$classpath" "$mainclass" \Q-s:$input\E '$q:$query' -quit:on !item-separator='$oDel' !encoding=utf-8 !indent=$indent
-        );
-        $res = $?;
-
-        remove_PI(\$xml) if $pi;
-        print cleanUP(\$xpath, \$xml);
+        $cmd .= qq/ '-qs:$query'/;
     }
+
+    execute($cmd, $https, $input);
+}
+
+sub execute {
+    my ($cmd, $https, $input) = @_;
+
+    my $xml = qx(
+        $verbose
+        $cmd
+    );
+    $res = $?;
+
+    remove_PI(\$xml) if $pi;
+    print cleanUP(\$xpath, \$xml);
+
+    if ($https) {
+        chomp $input;
+        unlink $input;
+    }
+
     print "\n";
 
     exit ($res > 0) ? 1 : 0;
