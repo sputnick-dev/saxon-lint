@@ -57,6 +57,7 @@ else {
 
 $query = $xpath unless length $query;
 
+# Base command
 my $cmd = qq#java -cp "$classpath" "$mainclass" !encoding=utf-8 !indent=$indent -quit:on !item-separator='$oDel'#;
 
 if (! $xslt and ! length $xquery and ! length $xpath) {
@@ -71,6 +72,7 @@ if (length $xquery and not @ARGV) {
 }
 
 if (length $xquery and not $xslt) {
+    # slurp the whole XQuery file in $xquery variable
     { no warnings;
         if (-s $xquery) {
             {
