@@ -71,11 +71,6 @@ if (! $xslt and ! length $xquery and ! length $xpath) {
     help(1);
 }
 
-if (length $xquery and not @ARGV) {
-    $cmd .= qq/ '-q:$xquery'/;
-    execute($cmd, undef, undef, undef, $nopi, undef);
-}
-
 if (length $xquery and not $xslt) {
     # slurp the whole XQuery file in $query variable
     { no warnings;
@@ -91,6 +86,11 @@ if (length $xquery and not $xslt) {
             $query = $xquery;
         }
     }
+}
+
+if (length $xquery and not @ARGV) {
+    $cmd .= qq/ '-qs:$query'/;
+    execute($cmd, undef, undef, undef, $nopi, undef);
 }
 
 foreach my $input (@ARGV) {
@@ -162,6 +162,16 @@ sub execute {
     exit ($res > 0) ? 1 : 0;
 }
 
+sub remove_PI {
+    my $xml = shift;
+
+    # can't find a better way to do this with XML::LibXML
+    $$xml =~ s/^\<\?xml\s*version=.\d+\.\d+.\s*encoding=.[^"]+.\?\>//i;
+    $$xml =~ s/(^|\n)[\n\s]*/$1/g;
+
+    return;
+}
+
 sub remove_NS {
     my ($xpath, $xml) = @_;
 
@@ -180,16 +190,6 @@ sub remove_NS {
     else {
         return $$xml;
     }
-}
-
-sub remove_PI {
-    my $xml = shift;
-
-    # can't find a better way to do this with XML::LibXML
-    $$xml =~ s/^\<\?xml\s*version=.\d+\.\d+.\s*encoding=.[^"]+.\?\>//i;
-    $$xml =~ s/(^|\n)[\n\s]*/$1/g;
-
-    return;
 }
 
 # http://stackoverflow.com/questions/17756926/remove-xml-namespaces-with-xmllibxml
