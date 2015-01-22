@@ -160,7 +160,7 @@ sub execute {
 sub remove_NS {
     my ($xpath, $xml) = @_;
 
-    if (length $$xpath) {
+    if (length $$xpath and $$xpath ne "/") {
         my $parser = XML::LibXML->new();
         my $doc = $parser->parse_balanced_chunk($$xml);
 
