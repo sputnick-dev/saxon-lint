@@ -20,7 +20,7 @@ my $transformclass = 'net.sf.saxon.Transform';
 my $help = my $html = my $indent = my $res = my $xslt = my $nopi = 0;
 my $oDel = "\n"; # default output-separator
 my $mainclass = my $xpath = my $query = my $xquery = my $verbose = '';
-
+my @extra = ();
 GetOptions (
     "help"                  => \$help,     # flag
     "html"                  => \$html,     # flag
@@ -30,6 +30,7 @@ GetOptions (
     "xquery=s"              => \$xquery,   # string
     "indent"                => \$indent,   # flag
     "no-pi"                 => \$nopi,     # flag
+    "saxon-opt=s"           => \@extra,    # array
     "verbose"               => \$verbose,  # flag
 ) or die("Error in command line arguments\n");
 
@@ -59,6 +60,9 @@ $query = $xpath unless length $query;
 
 # Base command
 my $cmd = qq#java -cp "$classpath" "$mainclass" !encoding=utf-8 !indent=$indent -quit:on !item-separator='$oDel'#;
+
+# Add all Saxon extra opts
+$cmd .= qq@ $_@ for @extra;
 
 help(0) if $help == 1;
 
@@ -127,6 +131,7 @@ Usage:
     --output-separator,         set default separator to character ("\\n", ","...)
     --indent,                   indent the output
     --no-pi,                    remove Processing Instruction (<?xml ...>)
+    --saxon-opt,                Saxon extra argument
     --verbose,                  verbose mode
 EOF
    exit $error;
