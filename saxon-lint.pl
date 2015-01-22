@@ -157,7 +157,7 @@ sub execute {
     exit ($res > 0) ? 1 : 0;
 }
 
-sub cleanUP {
+sub remove_NS {
     my ($xpath, $xml) = @_;
 
     if (length $$xpath) {
