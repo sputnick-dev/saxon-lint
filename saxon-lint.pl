@@ -69,7 +69,7 @@ if (! $xslt and ! length $xquery and ! length $xpath) {
 
 if (length $xquery and not @ARGV) {
     $cmd .= qq/ '-q:$xquery'/;
-    execute($cmd, undef, undef);
+    execute($cmd, undef, undef, undef, $nopi, undef);
 }
 
 if (length $xquery and not $xslt) {
@@ -109,29 +109,7 @@ foreach my $input (@ARGV) {
         $cmd .= qq/ '-qs:$query'/;
     }
 
-    execute($cmd, $https, $input);
-}
-
-sub execute {
-    my ($cmd, $https, $input) = @_;
-
-    my $xml = qx(
-        $verbose
-        $cmd
-    );
-    $res = $?;
-
-    remove_PI(\$xml) if $pi;
-    print cleanUP(\$xpath, \$xml);
-
-    if ($https) {
-        chomp $input;
-        unlink $input;
-    }
-
-    print "\n";
-
-    exit ($res > 0) ? 1 : 0;
+    execute($cmd, $html, $https, $input, $nopi, $xpath);
 }
 
 sub help {
@@ -151,7 +129,32 @@ Usage:
     --no-pi,                    remove Processing Instruction (<?xml ...>)
     --verbose,                  verbose mode
 EOF
-   exit $error if $error;
+   exit $error;
+}
+
+# Call the Java command-line with built command
+sub execute {
+    my ($cmd, $html, $https, $input, $nopi, $xpath) = @_;
+
+    my $xml = qx(
+        $verbose
+        $cmd
+    );
+    $res = $?;
+
+    remove_PI(\$xml) if $nopi or (defined $xpath and length $xpath > 1);
+    remove_NS(\$xpath, \$xml) if $html;
+
+    print $xml;
+
+    if ($https) {
+        chomp $input;
+        unlink $input;
+    }
+
+    print "\n";
+
+    exit ($res > 0) ? 1 : 0;
 }
 
 sub cleanUP {
