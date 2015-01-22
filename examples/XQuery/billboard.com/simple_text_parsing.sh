@@ -1,6 +1,6 @@
 #!/bin/bash
 
-saxon-lint --html --xquery '
+saxon-lint --no-pi --html --xquery '
     for $a in //article[@id]
          let $chart    := $a//span[@class="this-week"]/text()
          let $artist   := normalize-space($a//div[@class="row-title"]/h3/a/text())
