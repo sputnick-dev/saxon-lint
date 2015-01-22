@@ -58,6 +58,7 @@ Usage:
 ```sh
 saxon-lint.pl --xpath '//key[text()="String"]/following-sibling::string[1]' file.xml
 saxon-lint.pl --xquery 'for $r in 1 to count(/table/tr) return /title' file.xml
+saxon-lint.pl --indent --xquery file.xquery
 curl -Ls 'http://domain.tld/file.xml' | saxon-lint.pl --xpath '//key[1]' -
 saxon-lint.pl --xslt file.xsl file.xml
 saxon-lint.pl --html --xpath 'string-join(//a/@href, "\r\n")' http://x.y/z.html
