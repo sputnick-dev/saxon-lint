@@ -73,7 +73,7 @@ if (length $xquery and not @ARGV) {
 }
 
 if (length $xquery and not $xslt) {
-    # slurp the whole XQuery file in $xquery variable
+    # slurp the whole XQuery file in $query variable
     { no warnings;
         if (-s $xquery) {
             {
