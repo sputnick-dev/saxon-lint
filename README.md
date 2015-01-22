@@ -49,6 +49,7 @@ Usage:
     --output-separator,         set default separator to character ("\n", ","...)
     --indent,                   indent the output
     --no-pi,                    remove Processing Instruction (<?xml ...>)
+    --saxon-opt,                Saxon extra argument
     --verbose,                  verbose mode
 
 ```
@@ -61,13 +62,16 @@ saxon-lint.pl --xquery 'for $r in 1 to count(/table/tr) return /title' file.xml
 saxon-lint.pl --indent --xquery file.xquery
 curl -Ls 'http://domain.tld/file.xml' | saxon-lint.pl --xpath '//key[1]' -
 saxon-lint.pl --xslt file.xsl file.xml
+saxon-lint.pl --xquery file.xquery --saxon-opt -t --saxon-opt '!indent=yes'
 saxon-lint.pl --html --xpath 'string-join(//a/@href, "\r\n")' http://x.y/z.html
 ```
 
 To set the `string-join()` character (like the latest snippet) for Unix likes, hit <kbd>ctrl</kbd>+<kbd>v</kbd> and <kbd>ENTER</kbd>.
 For Windows, just put `"\r\n"`.
 
-Check [others examples](https://github.com/sputnick-dev/saxon-lint/tree/master/examples).
+Check [others examples](https://github.com/sputnick-dev/saxon-lint/tree/master/examples).    
+
+For `--saxon-opt`, check [Saxon documentation](http://www.saxonica.com/documentation/#!configuration/config-features)
 
 ### Tricks:
 To be able to run the command without dot-slash : `./saxon-lint`, you need to modify the PATH variable. For windows, check http://www.computerhope.com/issues/ch000549.htm
@@ -79,9 +83,9 @@ to `/usr/share/bash-completion/completions/saxon-lint` (or similar).
 
 ### TroobleShooting:
 Tested platforms :
- - Linux (Archlinux)
- - Windows XP (with or without Cygwin)
+ - GNU/Linux (Archlinux, Ubuntu 12.04) the most tested
  - FreeBSD 10.1
+ - Windows XP (with or without Cygwin)
 
 Thanks to report any bug [here](https://github.com/sputnick-dev/saxon-lint/issues/new).
 
