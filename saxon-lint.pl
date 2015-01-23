@@ -22,7 +22,7 @@ my $oDel = "\n"; # default output-separator
 my $mainclass = my $xpath = my $query = my $xquery = my $verbose = '';
 my @extra = ();
 GetOptions (
-    "h|help"                  => \$help,     # flag
+    "h|help"                => \$help,     # flag
     "html"                  => \$html,     # flag
     "xslt=s"                => \$xslt,     # string
     "output-separator=s"    => \$oDel,     # string
@@ -31,7 +31,7 @@ GetOptions (
     "indent"                => \$indent,   # flag
     "no-pi"                 => \$nopi,     # flag
     "saxon-opt=s"           => \@extra,    # array
-    "v|verbose"               => \$verbose,  # flag
+    "v|verbose"             => \$verbose,  # flag
 ) or die("Error in command line arguments\n");
 
 chdir dirname($0);
@@ -125,7 +125,7 @@ sub help {
 Usage:
     $0 <opts> <file(s)>
     Parse the XML files and output the result of the parsing
-    --help,                     this help
+    --help -h,                  this help
     --xpath,                    XPath expression
     --xquery,                   Xquery expression or file
     --html,                     use the HTML parser
@@ -134,7 +134,7 @@ Usage:
     --indent,                   indent the output
     --no-pi,                    remove Processing Instruction (<?xml ...>)
     --saxon-opt,                Saxon extra argument
-    --verbose,                  verbose mode
+    --verbose -v,               verbose mode
 EOF
    exit $error;
 }

@@ -41,7 +41,7 @@ $ ./saxon-lint.pl --help
 Usage:
     saxon-lint.pl <opts> <file(s)>
     Parse the XML files and output the result of the parsing
-    --help,                     this help
+    --help -h,                  this help
     --xpath,                    XPath expression
     --xquery,                   Xquery expression or file
     --html,                     use the HTML parser
@@ -50,7 +50,7 @@ Usage:
     --indent,                   indent the output
     --no-pi,                    remove Processing Instruction (<?xml ...>)
     --saxon-opt,                Saxon extra argument
-    --verbose,                  verbose mode
+    --verbose -v,               verbose mode
 
 ```
 
