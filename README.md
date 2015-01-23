@@ -46,7 +46,7 @@ Usage:
     --xquery,                   Xquery expression or file
     --html,                     use the HTML parser
     --xslt,                     use XSL transformation
-    --output-separator,         set default separator to character ("\n", ","...)
+    --output-separator,         set output separator to character ("\n", ","...)
     --indent,                   indent the output
     --no-pi,                    remove Processing Instruction (<?xml ...>)
     --saxon-opt,                Saxon extra argument
