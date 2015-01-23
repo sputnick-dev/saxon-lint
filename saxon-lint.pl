@@ -71,27 +71,26 @@ if (not $xslt and not length $xquery and not length $xpath) {
     help(1);
 }
 
-if (length $xquery and not $xslt) {
-    # slurp the whole XQuery file in $query variable
-    { no warnings;
+if (length $xquery) {
+    { # $xquery can be a file or a string and -s complains when it's a string with multi-lines
+        no warnings;
+
         if (-s $xquery) {
-            {
-                local $/ = undef;
-                open my $fh, "<", $xquery;
-                $query = <$fh>;
-                close $fh;
-            }
+            $cmd .= qq! '-q:$xquery'!
         }
         else{
             $query = $xquery;
+            if ($html) {
+                $cmd .= qq# '-qs:declare default element namespace "http://www.w3.org/1999/xhtml";$query'#;
+            }
+            else {
+                $cmd .= qq! '-qs:$query'!;
+            }
         }
     }
 }
 
-if (length $xquery and not @ARGV) {
-    $cmd .= qq/ '-qs:$query'/;
-    execute($cmd, undef, undef, undef, $nopi, undef);
-}
+execute($cmd, undef, undef, undef, $nopi, undef) if (length $xquery and not @ARGV);
 
 foreach my $input (@ARGV) {
     my $https = 0;
@@ -103,13 +102,16 @@ foreach my $input (@ARGV) {
 
     $cmd .= qq# -s:$input#;
 
-    if ($html) {
+    if ($html and not length $xquery) {
         $cmd .= qq# -x:$htmlclass '-qs:declare default element namespace "http://www.w3.org/1999/xhtml";$query'#;
+    }
+    elsif ($html and length $xquery) {
+        $cmd .= qq# -x:$htmlclass#;
     }
     elsif ($xslt) {
         $cmd .= qq/ '-xsl:$query'/;
     }
-    else {
+    elsif (not length $xquery) {
         $cmd .= qq/ '-qs:$query'/;
     }
 
