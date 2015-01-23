@@ -14,7 +14,7 @@ require_ok('autodie');
 require_ok('File::Temp');
 require_ok('LWP::UserAgent');
 
-like(qx(./examples/XPath/get_free_links.sh), qr!http://!, 'match http links');
+like(qx(./examples/XPath/get_free_links.sh), qr!https?://!, 'match http links');
 like(qx(./examples/XPath/001.sh), qr!1,2,3!, 'simple xpath concatenation');
 like(qx(./examples/XPath/002.sh), qr!1\n2\n3!s, 'simple xpath query on multi-lines');
 like(qx(./examples/XQuery/billboard.com/to_HTML_table.sh), qr!Check file!, 'xquery to create a table');
