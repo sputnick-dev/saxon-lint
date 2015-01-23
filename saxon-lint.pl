@@ -49,9 +49,6 @@ if ($xslt) {
     $mainclass = $transformclass;
     $query = $xslt;
 }
-elsif (length $xquery) {
-    $mainclass = $queryclass;
-}
 else {
     $mainclass = $queryclass;
 }
