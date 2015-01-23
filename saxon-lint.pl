@@ -66,7 +66,7 @@ $cmd .= qq@ $_@ for @extra;
 
 help(0) if $help == 1;
 
-if (! $xslt and ! length $xquery and ! length $xpath) {
+if (not $xslt and not length $xquery and not length $xpath) {
     warn "Missing mandatory --xpath --xslt or --xquery argument\n\n";
     help(1);
 }
