@@ -7,7 +7,7 @@
 use utf8;
 use strict; use warnings;
 
-use Test::More tests => 20;
+use Test::More tests => 21;
 
 require_ok(
 $_) for qw/XML::LibXML Getopt::Long File::Basename autodie File::Temp LWP::UserAgent/;
@@ -81,4 +81,10 @@ like(
 ok(
     &{ sub{ return scalar grep { /(?:Wulfman|Parod|Terrell|XXX)/ } split "\n", qx(examples/XPath/hamlet.sh); } }() == 3,
      "using a default NS with --xpath for hamlet.xml"
+);
+#1 : test if we can run saxon-lint againts an XML file in the current directory
+like(
+    qx(examples/XPath/003.sh),
+    qr!1,2,3!,
+    'saxon-lint againts an XML file in the current directory'
 );
