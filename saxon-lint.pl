@@ -3,9 +3,9 @@
 # Gilles Quenot <gilles.quenot@sputnick.fr>
 
 use strict; use warnings;
+use FindBin '$RealBin';
 use XML::LibXML;
 use Getopt::Long;
-use File::Basename;
 use autodie;
 
 use utf8;
@@ -34,9 +34,8 @@ GetOptions (
     "v|verbose"             => \$verbose,  # flag
 ) or die("Error in command line arguments\n");
 
-chdir dirname($0);
 my $sep = $^O =~ /(?:MSWin|cygwin)/i ? ";" : ":";
-my $classpath = $html ? "$htmlparser${sep}$xmlparser" : $xmlparser;
+my $classpath = $html ? "$RealBin/$htmlparser${sep}$RealBin/$xmlparser" : "$RealBin/$xmlparser";
 
 $indent = $indent ? 'yes' : 'no';
 
