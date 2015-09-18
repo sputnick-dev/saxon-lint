@@ -7,7 +7,7 @@ The default XPath output displays each result nodes on a separate newline, this 
 
 ### Main features
 
- - XML parsing via files
+ - XML parsing via files (and `STDIN`)
  - XPath 3.0/XQuery 3.0/XSLT 2.0 using Michael Kay's [Saxon-HE](http://sourceforge.net/projects/saxon) Java library
  - (X)HTML parsing via HTTP, HTTPS or files, even with broken RealLife©®™ HTML using John Cowan's [TagSoup](http://home.ccil.org/~cowan/XML/tagsoup/) Java library
 
@@ -67,7 +67,7 @@ saxon-lint.pl --html --xpath 'string-join(//a/@href, "\r\n")' http://x.y/z.html
 ```
 
 To set the `string-join()` character (like the latest snippet) for Unix likes, hit <kbd>ctrl</kbd>+<kbd>v</kbd> and <kbd>ENTER</kbd>.
-For Windows, just put `"\r\n"`.
+For Windows, just type `"\r\n"`.
 
 Check [others examples](https://github.com/sputnick-dev/saxon-lint/tree/master/examples).    
 
