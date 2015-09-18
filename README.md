@@ -3,7 +3,7 @@ This program is aimed to query XML/(X)HTML files via command line such as [XMLSt
 
 As far as you have the prerequisites, this project is **cross-platform** (Linux, MacOsX/*BSD, Windows... ).
 
-The default XPath output display each result nodes on a separate newline, this is suitable for shell scripting to split results in an array (by example). This feature is missing with `xmllint`.
+The default XPath output displays each result nodes on a separate newline, this is suitable for shell scripting to split results in an array (by example). This feature is missing with `xmllint`.
 
 ### Main features
 
