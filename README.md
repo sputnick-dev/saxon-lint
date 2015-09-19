@@ -66,6 +66,11 @@ saxon-lint.pl --xquery file.xquery --saxon-opt -t --saxon-opt '!indent=yes'
 saxon-lint.pl --html --xpath 'string-join(//a/@href, "\r\n")' http://x.y/z.html
 ```
 
+Get shortened URL via tinyurl:
+```sh
+saxon-lint --html --xpath '//div[@class="indent"][1]/b/text()' 'http://tinyurl.com/create.php?url=http://google.com'
+```
+
 To set the `string-join()` character (like the latest snippet) for Unix likes, hit <kbd>ctrl</kbd>+<kbd>v</kbd> and <kbd>ENTER</kbd>.
 For Windows, just type `"\r\n"`.
 
