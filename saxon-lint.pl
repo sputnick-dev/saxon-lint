@@ -175,7 +175,7 @@ sub remove_NS {
 
     if (length $$xpath and $$xpath ne "/") {
         my $parser = XML::LibXML->new();
-        my $doc = $parser->parse_balanced_chunk($$xml);
+        my $doc = $parser->parse_balanced_chunk($xml);
 
         # remove namespaces for the whole document
         for my $el ($doc->findnodes('//*')) {
