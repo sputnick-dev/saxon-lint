@@ -1,5 +1,5 @@
 # saxon-lint
-This program is aimed to query XML/(X)HTML files via command line such as [XMLStarlet](http://xmlstar.sourceforge.net/) or [xmllint](http://xmlsoft.org/xmllint.html), but with the ability to use **XPath 3.0**/**XQuery 3.0**/**XSLT 2.0** (Other command-line tools are stuck with [libxml2](http://xmlsoft.org/) (apart xidel with xpath2) and XPath 1.0/XSLT 1.0).
+This program is aimed to query XML/(X)HTML files via command line such as [XMLStarlet](http://xmlstar.sourceforge.net/) or [xmllint](http://xmlsoft.org/xmllint.html), but with the ability to use **XPath 3.0**/**XQuery 3.0**/**XSLT 2.0** (Other command-line tools are stuck with [libxml2](http://xmlsoft.org/) (apart [xidel](http://www.videlibri.de/xidel.html) with xpath2) and XPath 1.0/XSLT 1.0).
 
 As far as you have the prerequisites, this project is **cross-platform** (Linux, MacOsX/*BSD, Windows... ).
 
