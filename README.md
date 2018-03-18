@@ -1,6 +1,8 @@
 # saxon-lint
 This program is aimed to query XML/(X)HTML files via command line such as [XMLStarlet](http://xmlstar.sourceforge.net/) or [xmllint](http://xmlsoft.org/xmllint.html), but with the ability to use **XPath 3.0**/**XQuery 3.0**/**XSLT 2.0** (Other command-line tools are stuck with [libxml2](http://xmlsoft.org/) (apart [xidel](http://www.videlibri.de/xidel.html)) and XPath 1.0/XSLT 1.0).
 
+It can be considered as a simple wrapper around `Saxon-HE` and `TagSoup` java libs.
+
 As far as you have the prerequisites, this project is **cross-platform** (Linux, MacOsX/*BSD, Windows... ).
 
 The default XPath output displays each result nodes on a separate newline, this is suitable for shell scripting to split results in an array (by example). This feature is missing with `xmllint`.
