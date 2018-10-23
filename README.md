@@ -5,7 +5,7 @@ It can be considered as a simple wrapper around `Saxon-HE` and `TagSoup` java li
 
 As far as you have the prerequisites, this project is **cross-platform** (Linux, MacOsX/*BSD, Windows... ).
 
-The default XPath output displays each result nodes on a separate newline, this is suitable for shell scripting to split results in an array (by example). This feature is missing with `xmllint`.
+The default XPath output displays each result nodes on a separate newline, this is suitable for shell scripting to split results in an array (by example). This feature <strike>is</strike> [was missing](https://gitlab.gnome.org/GNOME/libxml2/commit/da35eeae5b92b88d8ebdb64b4b327ac1c2cf1bce) with `xmllint`.
 
 ### Main features
 
