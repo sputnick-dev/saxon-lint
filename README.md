@@ -34,7 +34,7 @@ With one command for Debian and derivatives :
 
 ```sh
 $ git clone https://github.com/sputnick-dev/saxon-lint.git
-$ cd saxon-lint*
+$ cd saxon-lint
 $ chmod +x saxon-lint.pl
 $ ./saxon-lint.pl --help
 ```
