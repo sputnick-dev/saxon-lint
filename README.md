@@ -28,7 +28,7 @@ And Perl modules :
 
 With one command for Debian and derivatives :
 
-     apt-get update && apt-get install openjdk-7-jre perl libxml2 libxml2-dev \
+     apt-get update && apt-get install openjdk-11-jre perl libxml2 libxml2-dev \
         libxml-libxml-perl libwww-perl liblwp-protocol-https-perl
 ### Install:
 
