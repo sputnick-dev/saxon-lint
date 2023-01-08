@@ -1,7 +1,8 @@
 #!/usr/bin/perl
 
-# Gilles Quenot <gilles.quenot@sputnick.fr>
+my $myversion = "20230109";
 
+# Gilles Quenot <gilles.quenot@sputnick.fr>
 use strict; use warnings;
 use FindBin '$RealBin';
 use XML::LibXML;
@@ -17,7 +18,7 @@ my $queryclass = 'net.sf.saxon.Query';
 my $htmlclass = 'org.ccil.cowan.tagsoup.Parser';
 my $transformclass = 'net.sf.saxon.Transform';
 
-my $help = my $html = my $indent = my $res = my $xslt = my $nopi = 0;
+my $help = my $html = my $indent = my $res = my $xslt = my $nopi = my $version = 0;
 my $oDel = "\n"; # default output-separator
 my $mainclass = my $xpath = my $query = my $xquery = my $verbose = '';
 my @extra = ();
@@ -32,7 +33,13 @@ GetOptions (
     "no-pi"                 => \$nopi,     # flag
     "saxon-opt=s"           => \@extra,    # array
     "v|verbose"             => \$verbose,  # flag
+    "version"               => \$version,  # string
 ) or die("Error in command line arguments\n");
+
+if ($version) {
+    print "saxon-lint version $myversion\n";
+    exit 0;
+}
 
 my $sep = $^O =~ /(?:MSWin|cygwin)/i ? ";" : ":";
 my $classpath = $html ? "$RealBin/$htmlparser${sep}$RealBin/$xmlparser" : "$RealBin/$xmlparser";
