@@ -55,10 +55,10 @@ else {
 $query = $xpath unless length $query;
 
 # Base command
-my $cmd = qq#java -cp "$classpath" "$mainclass" !encoding=utf-8 !indent=$indent -quit:on !item-separator='$oDel'#;
+my $basecmd = qq#java -cp "$classpath" "$mainclass" !encoding=utf-8 !indent=$indent -quit:on !item-separator='$oDel'#;
 
 # Add all Saxon extra opts
-$cmd .= qq@ $_@ for @extra;
+$basecmd .= qq@ $_@ for @extra;
 
 help(0) if $help == 1;
 
@@ -72,21 +72,23 @@ if (length $xquery) {
         no warnings;
 
         if (-s $xquery) {
-            $cmd .= qq! '-q:$xquery'!
+            $basecmd .= qq! '-q:$xquery'!
         }
         else{
             $query = $xquery;
             if ($html) {
-                $cmd .= qq# '-qs:declare default element namespace "http://www.w3.org/1999/xhtml";$query'#;
+                $basecmd .= qq# '-qs:declare default element namespace "http://www.w3.org/1999/xhtml";$query'#;
             }
             else {
-                $cmd .= qq! '-qs:$query'!;
+                $basecmd .= qq! '-qs:$query'!;
             }
         }
     }
 }
 
-execute($cmd, undef, undef, undef, $nopi, undef) if (length $xquery and not @ARGV);
+if (length $xquery and not @ARGV) {
+    execute($basecmd, undef, undef, undef, $nopi, undef);
+}
 
 foreach my $input (@ARGV) {
     my $https = 0;
@@ -96,6 +98,7 @@ foreach my $input (@ARGV) {
         $https = 1;
     }
 
+    my $cmd = $basecmd;
     $cmd .= qq# -s:$input#;
 
     if ($html and not length $xquery) {
@@ -139,6 +142,7 @@ EOF
 sub execute {
     my ($cmd, $html, $https, $input, $nopi, $xpath) = @_;
 
+    #print $cmd , "\n";
     my $xml = qx(
         $verbose
         $cmd
@@ -157,7 +161,7 @@ sub execute {
 
     print "\n";
 
-    exit ($res > 0) ? 1 : 0;
+    #exit ($res > 0) ? 1 : 0;
 }
 
 sub remove_PI {
