@@ -55,6 +55,7 @@ Usage:
     --no-pi,                    remove Processing Instruction (<?xml ...>)
     --saxon-opt,                Saxon extra argument
     --verbose -v,               verbose mode
+    --version,                  current version
 
 ```
 
