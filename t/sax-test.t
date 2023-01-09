@@ -7,7 +7,7 @@
 use utf8;
 use strict; use warnings;
 
-use Test::More tests => 21;
+use Test::More tests => 22;
 
 require_ok(
 $_) for qw/XML::LibXML Getopt::Long File::Basename autodie File::Temp LWP::UserAgent/;
@@ -87,4 +87,8 @@ like(
     qx(examples/XPath/003.sh),
     qr!1,2,3!,
     'saxon-lint againts an XML file in the current directory'
+);
+ok(
+    qx(./saxon-lint.pl --xpath '//a' /path/that/not/exists) == 0,
+    "test exit code: should be 1"
 );
