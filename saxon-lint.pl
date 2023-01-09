@@ -18,7 +18,7 @@ my $queryclass = 'net.sf.saxon.Query';
 my $htmlclass = 'org.ccil.cowan.tagsoup.Parser';
 my $transformclass = 'net.sf.saxon.Transform';
 
-my $help = my $html = my $indent = my $res = my $xslt = my $nopi = my $version = 0;
+my $help = my $html = my $indent = my $res = my $xslt = my $nopi = my $version = my $err = 0;
 my $oDel = "\n"; # default output-separator
 my $mainclass = my $xpath = my $query = my $xquery = my $verbose = '';
 my @extra = ();
@@ -94,7 +94,7 @@ if (length $xquery) {
 }
 
 if (length $xquery and not @ARGV) {
-    execute($basecmd, undef, undef, undef, $nopi, undef);
+    execute($basecmd, undef, undef, undef, $nopi, undef) or $err++;
 }
 
 foreach my $input (@ARGV) {
@@ -121,8 +121,10 @@ foreach my $input (@ARGV) {
         $cmd .= qq/ '-qs:$query'/;
     }
 
-    execute($cmd, $html, $https, $input, $nopi, $xpath);
+    execute($cmd, $html, $https, $input, $nopi, $xpath) or $err++;
 }
+
+exit 1 if $err > 0;
 
 sub help {
     my $error = shift;
@@ -149,7 +151,6 @@ EOF
 sub execute {
     my ($cmd, $html, $https, $input, $nopi, $xpath) = @_;
 
-    #print $cmd , "\n";
     my $xml = qx(
         $verbose
         $cmd
@@ -168,7 +169,7 @@ sub execute {
 
     print "\n";
 
-    #exit ($res > 0) ? 1 : 0;
+    return ($res > 0) ? 0 : 1;
 }
 
 sub remove_PI {
