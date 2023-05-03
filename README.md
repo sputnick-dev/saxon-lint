@@ -1,7 +1,7 @@
 <!-- Moved: https://gitlab.com/GillesQuenot/saxon-lint -->
 
 # saxon-lint
-This program is aimed to query XML/(X)HTML files via command line such as [XMLStarlet](http://xmlstar.sourceforge.net/) or [xmllint](http://xmlsoft.org/xmllint.html), but with the ability to use **XPath 3.0**/**XQuery 3.0**/**XSLT 2.0** (Other command-line tools are stuck with [libxml2](http://xmlsoft.org/) (apart [xidel](http://www.videlibri.de/xidel.html)) and XPath 1.0/XSLT 1.0).
+This program is aimed to query XML/(X)HTML files via command line such as [XMLStarlet](http://xmlstar.sourceforge.net/) or [xmllint](http://xmlsoft.org/xmllint.html), but with the ability to use **XPath 3.0**/**XQuery 3.0**/**XSLT 2.0** (Other command-line tools are stuck with [libxml2](http://xmlsoft.org/) (apart [xidel](http://www.videlibri.de/xidel.html) and [BaseX](https://docs.basex.org/wiki/XQuery)) and XPath 1.0/XSLT 1.0).
 
 It can be considered as a simple wrapper around `Saxon-HE` and `TagSoup` java libs.
 
