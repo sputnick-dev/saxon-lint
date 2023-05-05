@@ -15,6 +15,16 @@ The default XPath output displays each result nodes on a separate newline, this 
  - XPath 3.0/XQuery 3.0/XSLT 2.0 using Michael Kay's [Saxon-HE](http://sourceforge.net/projects/saxon) Java library
  - (X)HTML parsing via HTTP, HTTPS or files, even with broken RealLife©®™ HTML using John Cowan's [TagSoup](http://home.ccil.org/~cowan/XML/tagsoup/) Java library
 
+### Limitations
+
+Based on the Saxon Home Edition (HE) documentation, it supports just the XQuery 3.1 Minimal Conformance. And it doesn't include the following:
+
+    Optional features not provided: XQuery 3.1 Schema Aware, XQuery 3.1 Typed Data, XQuery 3.1 Static Typing, XQuery Update 1.0
+    
+This is not FOSS software.
+
+For some FOSS tolls that can `update`, check `BaseX` linked earlier.
+
 ### Install prerequisites
  - java (openjdk...)
  - perl
