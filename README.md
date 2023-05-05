@@ -23,7 +23,7 @@ Based on the Saxon Home Edition (HE) documentation, it supports just the XQuery 
     
 This is not FOSS software.
 
-For some FOSS tolls that can `update`, check `BaseX` linked earlier.
+For some FOSS tools that can `update`, check `BaseX` linked earlier.
 
 ### Install prerequisites
  - java (openjdk...)
