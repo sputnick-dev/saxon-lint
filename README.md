@@ -17,9 +17,12 @@ The default XPath output displays each result nodes on a separate newline, this 
 
 ### Limitations
 
-Based on the Saxon Home Edition (HE) documentation, it supports just the XQuery 3.1 Minimal Conformance. And it doesn't include the following:
+Based on the Saxon Home Edition (HE) documentation, it supports the XQuery 3.1 Minimal Conformance. And it doesn't include the following:
 
-    Optional features not provided: XQuery 3.1 Schema Aware, XQuery 3.1 Typed Data, XQuery 3.1 Static Typing, XQuery Update 1.0
+ - XQuery 3.1 Schema Aware
+ - XQuery 3.1 Typed Data
+ - XQuery 3.1 Static Typing
+ - XQuery Update 1.0
     
 This is not FOSS software.
 
